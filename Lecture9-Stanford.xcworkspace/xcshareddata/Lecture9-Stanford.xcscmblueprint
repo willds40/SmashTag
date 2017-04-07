@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4A6151401E03B8B239B2761FAE20C8DE2EBAD9E5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4A6151401E03B8B239B2761FAE20C8DE2EBAD9E5" : 9223372036854775807,
+    "BA2C6B2BCFAAC8402C1DE38B091133CE3A043B02" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B3E7D454-830B-4012-B978-4556928DAAFA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4A6151401E03B8B239B2761FAE20C8DE2EBAD9E5" : "SmashTag\/",
+    "BA2C6B2BCFAAC8402C1DE38B091133CE3A043B02" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Lecture9-Stanford",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Lecture9-Stanford.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/willds40\/SmashTag.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4A6151401E03B8B239B2761FAE20C8DE2EBAD9E5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/willds40\/Calculator-Stanford.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BA2C6B2BCFAAC8402C1DE38B091133CE3A043B02"
+    }
+  ]
+}

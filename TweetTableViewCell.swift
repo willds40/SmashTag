@@ -15,6 +15,8 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetScreenNameLabel: UILabel!
     @IBOutlet weak var tweetProfileImageView: UIImageView!
     @IBOutlet weak var tweetTextLabel: UILabel!
+    var attributedString = NSMutableAttributedString()
+    
     
     var tweet:Twitter.Tweet?{
         didSet{
@@ -29,7 +31,20 @@ class TweetTableViewCell: UITableViewCell {
         tweetProfileImageView?.image = nil
         
         if let tweet = self.tweet{
-            tweetTextLabel?.text = tweet.text
+            tweetTextLabel.text  = tweet.text
+            attributedString = NSMutableAttributedString(string:tweet.text)
+            for hashtagMentions in tweet.hashtags{
+                attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: hashtagMentions.nsrange)
+            }
+            for urlMentions in tweet.urls{
+                attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.orange, range: urlMentions.nsrange)
+            }
+            for userMentions in tweet.userMentions{
+                attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blue, range: userMentions.nsrange)
+            }
+
+            tweetTextLabel.attributedText = attributedString
+            
             if tweetTextLabel?.text != nil {
                 for _ in tweet.media{
                     tweetTextLabel.text! += "📸"
