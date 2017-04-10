@@ -30,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="58" width="375" height="133"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fTQ-kO-phY" id="Yrn-dj-oW3">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="132.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="132"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lso-Oo-nwx">
@@ -86,6 +86,7 @@
                                     <outlet property="tweetProfileImageView" destination="7xQ-mQ-SYc" id="nYB-4Z-zSd"/>
                                     <outlet property="tweetScreenNameLabel" destination="maf-qg-uFx" id="4jA-8g-KEl"/>
                                     <outlet property="tweetTextLabel" destination="ae0-to-rjP" id="Pyp-xS-iXu"/>
+                                    <segue destination="zXw-K9-qGH" kind="show" identifier="detailTweetSegue" id="wbl-36-5Qa"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -102,6 +103,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bEX-br-dot" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="992.79999999999995" y="6.746626686656672"/>
+        </scene>
+        <!--Detail Tweet Table View Controller-->
+        <scene sceneID="aZw-03-SzJ">
+            <objects>
+                <tableViewController id="zXw-K9-qGH" customClass="DetailTweetTableViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="CKe-wQ-Rgh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet" id="Fbx-9k-zBf">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fbx-9k-zBf" id="iDC-ic-8J8">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="zXw-K9-qGH" id="Zly-bs-W06"/>
+                            <outlet property="delegate" destination="zXw-K9-qGH" id="STy-Pv-CMQ"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8tk-yM-zVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1703" y="7"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fpE-Ye-x8Y">
