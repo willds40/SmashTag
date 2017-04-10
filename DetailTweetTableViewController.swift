@@ -10,20 +10,37 @@ import UIKit
 import Twitter
 
 class DetailTweetTableViewController: UITableViewController {
-var tweetSelected = Array<Twitter.Tweet>()
+    //var tweetSelected = Array<Twitter.Tweet>()
+    var mentions = Array<Twitter.Mention>()
+    var tweetSelected = Array<Twitter.Tweet>()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
-        let tweet = tweetSelected
         
-//        var tweets = [Array<Twitter.Tweet>](){
-//            didSet{
-//                tableView.reloadData()
-//            }
+        
+        for var hashtags in tweetSelected[0].hashtags{
+        addMentions(tweets: [hashtags])
+        }
+        
+//        for  var urls in tweetSelected[0].urls{
+//        addMentions(tweets: [urls])
+//        }
+        
+//        for var userMentions in tweetSelected[0].userMentions{
+//        addMentions(tweets: [userMentions])
 //        }
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+}
+    
+    private  func addMentions(tweets:Array<Twitter.Mention> ){
+        for mention in tweets {
+            mentions.append(mention)
+        
+        }
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,23 +52,27 @@ var tweetSelected = Array<Twitter.Tweet>()
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 4
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 1
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of row
+        return mentions.count
+    }
 
-        // Configure the cell...
+    
+    private struct Storyboard{
+    static let TweetCellIdentifier = "DetailTweet"
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.TweetCellIdentifier, for: indexPath)
+        let mention = mentions[indexPath.row]
+        cell.textLabel?.text = mention.keyword
 
         return cell
     }
-    */
+ 
 
     
     

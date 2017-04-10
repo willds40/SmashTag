@@ -104,6 +104,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
         let myIndexPath = self.tableView.indexPathForSelectedRow!
         let row = myIndexPath.row
+    
         detailViewController.tweetSelected = [tweets[0][row]]
     }
         }
