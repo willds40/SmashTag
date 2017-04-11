@@ -10,24 +10,17 @@ import UIKit
 import Twitter
 
 class DetailTweetTableViewController: UITableViewController {
-    //var tweetSelected = Array<Twitter.Tweet>()
     var hashtags = Array<Twitter.Mention>()
     var urls = Array<Twitter.Mention>()
     var userMentions = Array<Twitter.Mention>()
     var images = Array<Twitter.MediaItem>()
-    var mentions = [Array<Twitter.Mention>]()
-    
-    
-
+    var mentions = [Array<Any>]()
     var tweetSelected = Array<Twitter.Tweet>()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
-        
-        
         for var hashtag in tweetSelected[0].hashtags{
         hashtags.append(hashtag)
         }
@@ -39,43 +32,16 @@ class DetailTweetTableViewController: UITableViewController {
             userMentions.append(userMention)
         }
         
-//        for  var images in tweetSelected[0].media{
-//            addImages(tweets: [images])
-//        }
+        for  var image in tweetSelected[0].media{
+            images.append(image)
+        }
 
-        
+        mentions.append(images)
         mentions.append(hashtags)
         mentions.append(urls)
         mentions.append(userMentions)
-//        mentions.append(images)
-       
-
 }
     
-//    private  func addHashtags(tweets:Array<Twitter.Mention> ){
-//        for mention in tweets {
-//                hashtags.append(mention)
-//        }
-//        
-//        }
-//    private  func addUrls(tweets:Array<Twitter.Mention> ){
-//        for mention in tweets {
-//           urls.append(mention)
-//        }
-//            }
-//    private  func addUserMentions(tweets:Array<Twitter.Mention> ){
-//        for mention in tweets {
-//           mentions[2].append(mention)
-//        }
-//           }
-//    private  func addImages(tweets:Array<Twitter.MediaItem> ){
-//        for mention in tweets {
-//            images.append(mention)
-//        }
-    
-//    }
- 
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -101,7 +67,20 @@ class DetailTweetTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.TweetCellIdentifier, for: indexPath)
       let mention  = mentions[indexPath.section][indexPath.row]
-     cell.textLabel?.text = mention.keyword
+        
+        if ((mention as? Twitter.Mention) != nil){
+        cell.textLabel?.text = (mention as! Twitter.Mention).keyword
+        }else{
+//            let pictureURL = (mention as! Twitter.MediaItem).url
+//            let pictureData = NSData(contentsOf: pictureURL as URL)
+//            let catPicture = UIImage(data: pictureData as! Data)
+//            var imageV = UIImageView()
+//            imageV = cell.viewWithTag(1) as! UIImageView
+//            imageV.image = catPicture
+            
+            
+        cell.textLabel?.text = (mention as! Twitter.MediaItem).description
+        }
 
         return cell
     }

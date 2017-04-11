@@ -43,6 +43,7 @@ class TweetTableViewCell: UITableViewCell {
                 attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blue, range: userMentions.nsrange)
             }
 
+            
             tweetTextLabel.attributedText = attributedString
             
             if tweetTextLabel?.text != nil {
