@@ -73,7 +73,7 @@ class DetailTweetTableViewController: UITableViewController {
         }else{
             let tweetPicture = getPicture(mention: mention)
             var imageV = UIImageView()
-            imageV = cell.imageView!
+            imageV = cell.viewWithTag(1) as! UIImageView
             imageV.image = tweetPicture
         }
         

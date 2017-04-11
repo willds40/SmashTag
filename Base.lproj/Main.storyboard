@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -108,17 +109,31 @@
         <scene sceneID="aZw-03-SzJ">
             <objects>
                 <tableViewController id="zXw-K9-qGH" customClass="DetailTweetTableViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="105" sectionHeaderHeight="28" sectionFooterHeight="28" id="CKe-wQ-Rgh">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="208" sectionHeaderHeight="28" sectionFooterHeight="28" id="CKe-wQ-Rgh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailTweet" rowHeight="105" id="Fbx-9k-zBf">
-                                <rect key="frame" x="0.0" y="28" width="375" height="105"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailTweet" rowHeight="208" id="Fbx-9k-zBf">
+                                <rect key="frame" x="0.0" y="28" width="375" height="208"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fbx-9k-zBf" id="iDC-ic-8J8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="207"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sqK-f9-jj0">
+                                            <rect key="frame" x="8" y="8" width="359" height="191"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="sqK-f9-jj0" secondAttribute="height" multiplier="359:191" id="7CM-5F-B4r"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="sqK-f9-jj0" firstAttribute="leading" secondItem="iDC-ic-8J8" secondAttribute="leadingMargin" id="1nP-41-WFH"/>
+                                        <constraint firstItem="sqK-f9-jj0" firstAttribute="top" secondItem="iDC-ic-8J8" secondAttribute="topMargin" id="LHv-m0-Tzy"/>
+                                        <constraint firstItem="sqK-f9-jj0" firstAttribute="bottom" secondItem="iDC-ic-8J8" secondAttribute="bottomMargin" id="aZn-9R-v2k"/>
+                                        <constraint firstItem="sqK-f9-jj0" firstAttribute="trailing" secondItem="iDC-ic-8J8" secondAttribute="trailingMargin" id="kEm-Va-SiC"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
