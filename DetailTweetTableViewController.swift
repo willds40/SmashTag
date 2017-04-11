@@ -59,6 +59,25 @@ class DetailTweetTableViewController: UITableViewController {
         return mentions[section].count
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        if section == 0 && mentions[section].count != 0 {
+        return "Images"
+        }
+        if section == 1 && mentions[section].count != 0 {
+            return "Hashtags"
+        }
+        if section == 2 && mentions[section].count != 0 {
+            return "URLS"
+        }
+        if section == 3 && mentions[section].count != 0 {
+            return "User Mentions"
+        }
+        return ""
+    }
+    
+    
+    
     
     private struct Storyboard{
         static let TweetCellIdentifier = "DetailTweet"

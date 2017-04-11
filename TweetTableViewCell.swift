@@ -46,7 +46,6 @@ class TweetTableViewCell: UITableViewCell {
             for _ in tweet.media{
                 cameraIncluded += " 📸"
             }
-            
              let cameraAttributedString = NSMutableAttributedString(string:cameraIncluded)
             attributedString.append(cameraAttributedString)
             tweetTextLabel.attributedText = attributedString
