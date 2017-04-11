@@ -135,6 +135,9 @@
                                         <constraint firstItem="sqK-f9-jj0" firstAttribute="trailing" secondItem="iDC-ic-8J8" secondAttribute="trailingMargin" id="kEm-Va-SiC"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="sqK-f9-jj0" firstAttribute="width" secondItem="Fbx-9k-zBf" secondAttribute="height" multiplier="359:208" id="K4p-DA-iYc"/>
+                                </constraints>
                             </tableViewCell>
                         </prototypes>
                         <connections>

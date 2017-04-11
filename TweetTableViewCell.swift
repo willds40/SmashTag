@@ -23,7 +23,6 @@ class TweetTableViewCell: UITableViewCell {
             updateUI()
         }
     }
-    
     private func updateUI(){
         tweetTextLabel?.attributedText = nil
         tweetCreatedLabel?.attributedText = nil
@@ -32,6 +31,7 @@ class TweetTableViewCell: UITableViewCell {
         
         if let tweet = self.tweet{
             tweetTextLabel.text  = tweet.text
+            
             attributedString = NSMutableAttributedString(string:tweet.text)
             for hashtagMentions in tweet.hashtags{
                 attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: hashtagMentions.nsrange)
@@ -42,17 +42,16 @@ class TweetTableViewCell: UITableViewCell {
             for userMentions in tweet.userMentions{
                 attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.blue, range: userMentions.nsrange)
             }
-
+            var cameraIncluded = ""
+            for _ in tweet.media{
+                cameraIncluded += " 📸"
+            }
             
+             let cameraAttributedString = NSMutableAttributedString(string:cameraIncluded)
+            attributedString.append(cameraAttributedString)
             tweetTextLabel.attributedText = attributedString
             
-            if tweetTextLabel?.text != nil {
-                for _ in tweet.media{
-                    tweetTextLabel.text! += "📸"
-                }
-            }
         }
-        
         tweetScreenNameLabel?.text = "\(tweet?.user)"
         
         if let profileImageURL = tweet?.user.profileImageURL{
