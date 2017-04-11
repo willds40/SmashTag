@@ -62,7 +62,7 @@ class DetailTweetTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if section == 0 && mentions[section].count != 0 {
-        return "Images"
+            return "Images"
         }
         if section == 1 && mentions[section].count != 0 {
             return "Hashtags"
@@ -75,9 +75,6 @@ class DetailTweetTableViewController: UITableViewController {
         }
         return ""
     }
-    
-    
-    
     
     private struct Storyboard{
         static let TweetCellIdentifier = "DetailTweet"
@@ -99,18 +96,20 @@ class DetailTweetTableViewController: UITableViewController {
         return cell
     }
     
-    
-    private func getPicture (mention:Any) -> UIImage{
-        //should be done on the background thread
-        let pictureURL = (mention as! Twitter.MediaItem).url
-        let pictureData = NSData(contentsOf: pictureURL as URL)
-        let tweetPicture = UIImage(data: pictureData as! Data)
-        return tweetPicture!
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let mention  = mentions[indexPath.section][indexPath.row]
+        if (mention as? Twitter.Mention) != nil{
+            let URLString = (mention as! Twitter.Mention).keyword
+            let url =  URL(string:URLString)
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        }
     }
-    
-    
-    
-    
-    
-    
 }
+private func getPicture (mention:Any) -> UIImage{
+    //should be done on the background thread
+    let pictureURL = (mention as! Twitter.MediaItem).url
+    let pictureData = NSData(contentsOf: pictureURL as URL)
+    let tweetPicture = UIImage(data: pictureData as! Data)
+    return tweetPicture!
+}
+
