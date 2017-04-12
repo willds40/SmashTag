@@ -88,7 +88,6 @@ class DetailTweetTableViewController: UITableViewController {
             cell.textLabel?.text = (mention as! Twitter.Mention).keyword
         }else{
             let tweetPicture = getPicture(mention: mention)
-            let pictureSize = (mention as! Twitter.MediaItem).aspectRatio
             var imageV = UIImageView()
             imageV = cell.viewWithTag(1) as! UIImageView
             imageV.image = tweetPicture
@@ -130,6 +129,7 @@ class DetailTweetTableViewController: UITableViewController {
             if  segue.identifier == "pictureSegue" {
     
                 let detailViewController = segue.destination as! PictureViewController
+                
                 
                    
                 detailViewController.imageURL = pictureUrl

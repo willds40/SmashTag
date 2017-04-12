@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PictureViewController: UIViewController {
+class PictureViewController: UIViewController, UIScrollViewDelegate{
     var imageURL:NSURL?{
         didSet{
             image = nil
@@ -42,12 +42,18 @@ class PictureViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!{
         didSet{
         scrollView.contentSize = imageView.frame.size
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 4.0
+       
+
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.addSubview(imageView)
+        
         
        
     }
@@ -57,7 +63,9 @@ class PictureViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
     /*
     // MARK: - Navigation
 
