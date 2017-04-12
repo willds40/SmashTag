@@ -16,6 +16,7 @@ class DetailTweetTableViewController: UITableViewController {
     var images = Array<Twitter.MediaItem>()
     var mentions = [Array<Any>]()
     var tweetSelected = Array<Twitter.Tweet>()
+    var pictureUrl = NSURL() 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,16 +98,19 @@ class DetailTweetTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
+            let mention  = mentions[indexPath.section][indexPath.row]
+            pictureUrl = (mention as! Twitter.MediaItem).url as NSURL
             self.performSegue(withIdentifier: "pictureSegue", sender: self)
+           
+            
         }
         if indexPath.section == 2 {
             let mention  = mentions[indexPath.section][indexPath.row]
             if (mention as? Twitter.Mention) != nil{
-                if (mention as! Twitter.Mention).keyword.hasPrefix("http"){
                     let URLString = (mention as! Twitter.Mention).keyword
                     let url =  URL(string:URLString)
                     UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-                }
+                
             }
         }
     }
@@ -120,15 +124,13 @@ class DetailTweetTableViewController: UITableViewController {
     
     
        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //        if  segue.identifier == "pictureSegue" {
-    //
-    //            let detailViewController = segue.destination as! PictureViewController
-    //
-    //            //    let myIndexPath = self.tableView.indexPathForSelectedRow!
-    //            //    let row = myIndexPath.row
-    //
-    //            //detailViewController.tweetSelected = [tweets[0][row]]
-    //        }
+            if  segue.identifier == "pictureSegue" {
+    
+                let detailViewController = segue.destination as! PictureViewController
+                
+                   
+                detailViewController.imageURL = pictureUrl
+            }
         }
     
 }

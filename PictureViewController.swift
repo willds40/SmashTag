@@ -9,15 +9,17 @@
 import UIKit
 
 class PictureViewController: UIViewController {
-    var imageURL:NSURL?
-    
-    private var imageView = UIImageView(){
+    var imageURL:NSURL?{
         didSet{
             image = nil
             fetchImage()
         }
-    
     }
+    
+    private var imageView = UIImageView()
+    
+    
+    
     private func fetchImage(){
         if let url = imageURL{
             if let imageData = NSData(contentsOf:url as URL){
@@ -46,7 +48,7 @@ class PictureViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.addSubview(imageView)
-        imageURL = NSURL(string: "http://visit.stanford.edu/assets/cardinal/images/tours/freedom/freedom_canvas2.jpg")
+        
        
     }
 
