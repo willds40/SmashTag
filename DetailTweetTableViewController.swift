@@ -88,9 +88,11 @@ class DetailTweetTableViewController: UITableViewController {
             cell.textLabel?.text = (mention as! Twitter.Mention).keyword
         }else{
             let tweetPicture = getPicture(mention: mention)
+            let pictureSize = (mention as! Twitter.MediaItem).aspectRatio
             var imageV = UIImageView()
             imageV = cell.viewWithTag(1) as! UIImageView
             imageV.image = tweetPicture
+            imageV.sizeToFit()
         }
         
         return cell
@@ -118,6 +120,7 @@ class DetailTweetTableViewController: UITableViewController {
         //should be done on the background thread
         let pictureURL = (mention as! Twitter.MediaItem).url
         let pictureData = NSData(contentsOf: pictureURL as URL)
+        
         let tweetPicture = UIImage(data: pictureData as! Data)
         return tweetPicture!
     }

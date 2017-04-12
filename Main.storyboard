@@ -122,22 +122,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sqK-f9-jj0">
-                                            <rect key="frame" x="8" y="8" width="359" height="191"/>
+                                            <rect key="frame" x="8" y="0.0" width="359" height="207"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="sqK-f9-jj0" secondAttribute="height" multiplier="359:191" id="7CM-5F-B4r"/>
+                                                <constraint firstAttribute="width" secondItem="sqK-f9-jj0" secondAttribute="height" multiplier="359:207" id="noy-1d-xGx"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="sqK-f9-jj0" firstAttribute="leading" secondItem="iDC-ic-8J8" secondAttribute="leadingMargin" id="1nP-41-WFH"/>
-                                        <constraint firstItem="sqK-f9-jj0" firstAttribute="top" secondItem="iDC-ic-8J8" secondAttribute="topMargin" id="LHv-m0-Tzy"/>
-                                        <constraint firstItem="sqK-f9-jj0" firstAttribute="bottom" secondItem="iDC-ic-8J8" secondAttribute="bottomMargin" id="aZn-9R-v2k"/>
-                                        <constraint firstItem="sqK-f9-jj0" firstAttribute="trailing" secondItem="iDC-ic-8J8" secondAttribute="trailingMargin" id="kEm-Va-SiC"/>
+                                        <constraint firstItem="sqK-f9-jj0" firstAttribute="top" secondItem="iDC-ic-8J8" secondAttribute="top" id="10J-Dc-ehm"/>
+                                        <constraint firstAttribute="bottom" secondItem="sqK-f9-jj0" secondAttribute="bottom" id="h41-b2-Zes"/>
+                                        <constraint firstItem="sqK-f9-jj0" firstAttribute="centerX" secondItem="iDC-ic-8J8" secondAttribute="centerX" id="io7-ju-AFg"/>
+                                        <constraint firstItem="sqK-f9-jj0" firstAttribute="leading" secondItem="iDC-ic-8J8" secondAttribute="leadingMargin" id="mqe-b3-pM6"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <constraints>
-                                    <constraint firstItem="sqK-f9-jj0" firstAttribute="width" secondItem="Fbx-9k-zBf" secondAttribute="height" multiplier="359:208" id="K4p-DA-iYc"/>
-                                </constraints>
                             </tableViewCell>
                         </prototypes>
                         <connections>
