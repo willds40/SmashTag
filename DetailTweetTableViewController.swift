@@ -17,7 +17,6 @@ class DetailTweetTableViewController: UITableViewController {
     var mentions = [Array<Any>]()
     var tweetSelected = Array<Twitter.Tweet>()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,19 +96,40 @@ class DetailTweetTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let mention  = mentions[indexPath.section][indexPath.row]
-        if (mention as? Twitter.Mention) != nil{
-            let URLString = (mention as! Twitter.Mention).keyword
-            let url =  URL(string:URLString)
-            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+        if indexPath.section == 0 {
+            self.performSegue(withIdentifier: "pictureSegue", sender: self)
+        }
+        if indexPath.section == 2 {
+            let mention  = mentions[indexPath.section][indexPath.row]
+            if (mention as? Twitter.Mention) != nil{
+                if (mention as! Twitter.Mention).keyword.hasPrefix("http"){
+                    let URLString = (mention as! Twitter.Mention).keyword
+                    let url =  URL(string:URLString)
+                    UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                }
+            }
         }
     }
-}
-private func getPicture (mention:Any) -> UIImage{
-    //should be done on the background thread
-    let pictureURL = (mention as! Twitter.MediaItem).url
-    let pictureData = NSData(contentsOf: pictureURL as URL)
-    let tweetPicture = UIImage(data: pictureData as! Data)
-    return tweetPicture!
+    private func getPicture (mention:Any) -> UIImage{
+        //should be done on the background thread
+        let pictureURL = (mention as! Twitter.MediaItem).url
+        let pictureData = NSData(contentsOf: pictureURL as URL)
+        let tweetPicture = UIImage(data: pictureData as! Data)
+        return tweetPicture!
+    }
+    
+    
+       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        if  segue.identifier == "pictureSegue" {
+    //
+    //            let detailViewController = segue.destination as! PictureViewController
+    //
+    //            //    let myIndexPath = self.tableView.indexPathForSelectedRow!
+    //            //    let row = myIndexPath.row
+    //
+    //            //detailViewController.tweetSelected = [tweets[0][row]]
+    //        }
+        }
+    
 }
 

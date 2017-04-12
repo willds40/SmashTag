@@ -145,10 +145,45 @@
                             <outlet property="delegate" destination="zXw-K9-qGH" id="STy-Pv-CMQ"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="VxP-VR-nQa" kind="show" identifier="pictureSegue" id="MdF-7E-5wL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8tk-yM-zVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1701.5999999999999" y="6.746626686656672"/>
+        </scene>
+        <!--Picture View Controller-->
+        <scene sceneID="ySi-LE-Fkj">
+            <objects>
+                <viewController id="VxP-VR-nQa" customClass="PictureViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DwB-sq-7s8"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bx6-v0-SCp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="j94-8w-mGD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ifO-DD-fgl">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ifO-DD-fgl" firstAttribute="leading" secondItem="j94-8w-mGD" secondAttribute="leading" id="675-7b-req"/>
+                            <constraint firstItem="ifO-DD-fgl" firstAttribute="top" secondItem="DwB-sq-7s8" secondAttribute="bottom" id="BhQ-8G-SUi"/>
+                            <constraint firstItem="ifO-DD-fgl" firstAttribute="bottom" secondItem="Bx6-v0-SCp" secondAttribute="top" id="ZUC-Bm-OZX"/>
+                            <constraint firstAttribute="trailing" secondItem="ifO-DD-fgl" secondAttribute="trailing" id="zbW-Wf-eVe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="ifO-DD-fgl" id="7Yq-B3-Zhl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rrR-wt-SMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2557.5999999999999" y="6.746626686656672"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fpE-Ye-x8Y">
