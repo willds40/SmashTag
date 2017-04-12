@@ -144,6 +144,7 @@
                     </tableView>
                     <connections>
                         <segue destination="VxP-VR-nQa" kind="show" identifier="pictureSegue" id="MdF-7E-5wL"/>
+                        <segue destination="RIh-ad-SdA" kind="show" identifier="searchSegue" id="u3U-GZ-RaQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8tk-yM-zVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -163,7 +164,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ifO-DD-fgl">
-                                <rect key="frame" x="0.0" y="8" width="375" height="659"/>
+                                <rect key="frame" x="0.0" y="-36" width="375" height="703"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -201,4 +202,7 @@
             <point key="canvasLocation" x="53.600000000000001" y="6.746626686656672"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="u3U-GZ-RaQ"/>
+    </inferredMetricsTieBreakers>
 </document>

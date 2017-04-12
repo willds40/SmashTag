@@ -16,7 +16,8 @@ class DetailTweetTableViewController: UITableViewController {
     var images = Array<Twitter.MediaItem>()
     var mentions = [Array<Any>]()
     var tweetSelected = Array<Twitter.Tweet>()
-    var pictureUrl = NSURL() 
+    var pictureUrl = NSURL()
+    var searchKeyword = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class DetailTweetTableViewController: UITableViewController {
         for  var url in tweetSelected[0].urls{
             urls.append(url)
         }
-        for  var userMention in tweetSelected[0].urls{
+        for  var userMention in tweetSelected[0].userMentions{
             userMentions.append(userMention)
         }
         
@@ -102,9 +103,13 @@ class DetailTweetTableViewController: UITableViewController {
             let mention  = mentions[indexPath.section][indexPath.row]
             pictureUrl = (mention as! Twitter.MediaItem).url as NSURL
             self.performSegue(withIdentifier: "pictureSegue", sender: self)
-           
-            
         }
+        if indexPath.section == 1 {
+            let mention  = mentions[indexPath.section][indexPath.row]
+            searchKeyword = (mention as! Twitter.Mention).keyword
+            self.performSegue(withIdentifier: "searchSegue", sender: self)
+        }
+
         if indexPath.section == 2 {
             let mention  = mentions[indexPath.section][indexPath.row]
             if (mention as? Twitter.Mention) != nil{
@@ -114,6 +119,12 @@ class DetailTweetTableViewController: UITableViewController {
                 
             }
         }
+        if indexPath.section == 3 {
+            let mention  = mentions[indexPath.section][indexPath.row]
+            searchKeyword = (mention as! Twitter.Mention).keyword
+            self.performSegue(withIdentifier: "searchSegue", sender: self)
+        }
+
     }
     private func getPicture (mention:Any) -> UIImage{
         //should be done on the background thread
@@ -129,11 +140,13 @@ class DetailTweetTableViewController: UITableViewController {
             if  segue.identifier == "pictureSegue" {
     
                 let detailViewController = segue.destination as! PictureViewController
-                
-                
-                   
                 detailViewController.imageURL = pictureUrl
             }
+        if  segue.identifier == "searchSegue" {
+            
+            let detailViewController = segue.destination as! TweetTableViewController
+            detailViewController.searchText = searchKeyword
+        }
         }
     
 }
