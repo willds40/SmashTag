@@ -15,8 +15,8 @@ class SearchTermsRepo {
     var searchTermsArray = [String]()
     
     func setSearchTerms(searchTerm:String){
-//        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-//        UserDefaults.standard.synchronize()
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        UserDefaults.standard.synchronize()
         searchTermsArray.append(searchTerm)
         defaults.setValue(searchTermsArray, forKey: "searchTermArray")
         }
@@ -41,7 +41,9 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             tweets.removeAll()
             searchForTweet()
             title = searchText
-        SearchTermsRepo.sharedInstance.setSearchTerms(searchTerm: searchText!)
+        
+      SearchTermsRepo.sharedInstance.setSearchTerms(searchTerm: searchText!)
+            
         }
     }
     
