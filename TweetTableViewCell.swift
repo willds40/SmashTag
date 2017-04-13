@@ -46,7 +46,7 @@ class TweetTableViewCell: UITableViewCell {
             for _ in tweet.media{
                 cameraIncluded += " 📸"
             }
-             let cameraAttributedString = NSMutableAttributedString(string:cameraIncluded)
+            let cameraAttributedString = NSMutableAttributedString(string:cameraIncluded)
             attributedString.append(cameraAttributedString)
             tweetTextLabel.attributedText = attributedString
             
@@ -54,8 +54,13 @@ class TweetTableViewCell: UITableViewCell {
         tweetScreenNameLabel?.text = "\(tweet?.user)"
         
         if let profileImageURL = tweet?.user.profileImageURL{
-            if let imageData = NSData(contentsOf:profileImageURL){
-                tweetProfileImageView?.image = UIImage(data:imageData as Data)
+            DispatchQueue.global().async { [weak self] in
+                if let imageData = NSData(contentsOf:profileImageURL){
+                    DispatchQueue.main.sync {
+                        self?.tweetProfileImageView?.image = UIImage(data:imageData as Data)
+                    }
+                }
+                
             }
         }
         if let created = tweet?.created{
