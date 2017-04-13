@@ -18,6 +18,7 @@ class SearchTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         searchTerms = SearchTermsRepo.sharedInstance.getSearchTerms()
+        searchTerms = searchTerms.reversed()
         self.tableView.reloadData()
     }
     
@@ -41,7 +42,6 @@ class SearchTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.SearchTermCellIndetifier, for: indexPath)
-
         let searchTerm  = searchTerms[indexPath.row]
         
         cell.textLabel?.text = searchTerm
