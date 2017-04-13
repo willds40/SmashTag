@@ -21,8 +21,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="eic-vj-i9a" kind="relationship" relationship="viewControllers" id="zAG-Hs-Xmu"/>
-                        <segue destination="nSn-6O-c0K" kind="relationship" relationship="viewControllers" id="8or-MG-vXJ"/>
+                        <segue destination="eic-vj-i9a" kind="relationship" relationship="viewControllers" id="wRd-Af-qHa"/>
+                        <segue destination="nSn-6O-c0K" kind="relationship" relationship="viewControllers" id="LFy-oz-GRU"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mmK-y5-3Sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -32,7 +32,7 @@
         <!--Search Table View Controller-->
         <scene sceneID="lR6-8o-eOS">
             <objects>
-                <tableViewController id="BnD-l6-PQR" customClass="searchTableViewController" sceneMemberID="viewController">
+                <tableViewController id="BnD-l6-PQR" customClass="SearchTableViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="tGS-Ly-IDI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,6 +54,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="RIh-ad-SdA" kind="show" identifier="searchSegueRecentSearch" id="Oec-Yc-mAa"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -281,9 +284,10 @@
     </scenes>
     <resources>
         <image name="saveHistory.png" width="20" height="20"/>
-        <image name="search.png" width="20" height="20"/>
+        <image name="search.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zAG-Hs-Xmu"/>
+        <segue reference="wRd-Af-qHa"/>
+        <segue reference="Oec-Yc-mAa"/>
     </inferredMetricsTieBreakers>
 </document>

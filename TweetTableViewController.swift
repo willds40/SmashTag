@@ -9,6 +9,26 @@
 import UIKit
 import Twitter
 
+class SearchTermsRepo {
+    static let sharedInstance = SearchTermsRepo()
+    let defaults = UserDefaults.standard
+    var searchTermsArray = [String]()
+    
+    func setSearchTerms(searchTerm:String){
+//        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+//        UserDefaults.standard.synchronize()
+        searchTermsArray.append(searchTerm)
+        defaults.setValue(searchTermsArray, forKey: "searchTermArray")
+        }
+    
+    func getSearchTerms()->Array<String>{
+    let searchTerms = defaults.object(forKey: "searchTermArray") as? [String] ?? [String]()
+    return searchTerms
+    }
+}
+
+
+
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     var tweets = [Array<Twitter.Tweet>](){
@@ -20,7 +40,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         didSet{
             tweets.removeAll()
             searchForTweet()
-            title=searchText
+            title = searchText
+        SearchTermsRepo.sharedInstance.setSearchTerms(searchTerm: searchText!)
         }
     }
     
@@ -53,6 +74,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+      
+        
     }
     
     
