@@ -21,12 +21,16 @@ class PictureViewController: UIViewController, UIScrollViewDelegate{
     
     
     private func fetchImage(){
-        if let url = imageURL{
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        if let url = self?.imageURL{
             if let imageData = NSData(contentsOf:url as URL){
-                image = UIImage(data: imageData as Data)
+                DispatchQueue.main.sync{
+                self?.image = UIImage(data: imageData as Data)
+            }
             }
         }
     }
+}
     
     private var image: UIImage?{
         get{

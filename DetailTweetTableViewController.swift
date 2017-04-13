@@ -88,16 +88,22 @@ class DetailTweetTableViewController: UITableViewController {
         if ((mention as? Twitter.Mention) != nil){
             cell.textLabel?.text = (mention as! Twitter.Mention).keyword
         }else{
-            let tweetPicture = getPicture(mention: mention)
-            var imageV = UIImageView()
-            imageV = cell.viewWithTag(1) as! UIImageView
-            imageV.image = tweetPicture
-            imageV.sizeToFit()
+            
+            DispatchQueue.global().async {
+                let pictureURL = (mention as! Twitter.MediaItem).url
+                let pictureData = NSData(contentsOf: pictureURL as URL)
+                DispatchQueue.main.sync {
+                    let tweetPicture = UIImage(data: pictureData as! Data)!
+                    var imageV = UIImageView()
+                    imageV = cell.viewWithTag(1) as! UIImageView
+                    imageV.image = tweetPicture
+                    imageV.sizeToFit()
+                }
+            }
         }
-        
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let mention  = mentions[indexPath.section][indexPath.row]
@@ -127,13 +133,16 @@ class DetailTweetTableViewController: UITableViewController {
 
     }
     private func getPicture (mention:Any) -> UIImage{
-        //should be done on the background thread
-        let pictureURL = (mention as! Twitter.MediaItem).url
-        let pictureData = NSData(contentsOf: pictureURL as URL)
-        
-        let tweetPicture = UIImage(data: pictureData as! Data)
-        return tweetPicture!
+        var tweetPicture = UIImage()
+        DispatchQueue.global().async {
+            let pictureURL = (mention as! Twitter.MediaItem).url
+            let pictureData = NSData(contentsOf: pictureURL as URL)
+            DispatchQueue.main.sync {
+             tweetPicture = UIImage(data: pictureData as! Data)!
+            }
     }
+        return tweetPicture
+}
     
     
        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

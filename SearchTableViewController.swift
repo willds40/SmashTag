@@ -1,10 +1,3 @@
-//
-//  SearchTableViewController.swift
-//  SmashTag
-//
-//  Created by Will Devon-Sand on 4/12/17.
-//  Copyright © 2017 Will Devon-Sand. All rights reserved.
-//
 
 import UIKit
 
@@ -21,18 +14,12 @@ class SearchTableViewController: UITableViewController {
         searchTerms = searchTerms.reversed()
         self.tableView.reloadData()
     }
-    
-    
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
+        override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return searchTerms.count
     }
 
@@ -53,20 +40,12 @@ class SearchTableViewController: UITableViewController {
           let searchTerm  = searchTerms[indexPath.row]
         searchKeyword = searchTerm
         self.performSegue(withIdentifier: "searchSegueRecentSearch", sender: self)
-
-    
-    
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if  segue.identifier == "searchSegueRecentSearch" {
             let detailViewController = segue.destination as! TweetTableViewController
             detailViewController.searchText = searchKeyword
         }
-
-        
             }
-    
-
 }
