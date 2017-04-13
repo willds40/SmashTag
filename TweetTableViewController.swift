@@ -12,11 +12,10 @@ import Twitter
 class SearchTermsRepo {
     static let sharedInstance = SearchTermsRepo()
     let defaults = UserDefaults.standard
-    var searchTermsArray = [String]()
     
     func setSearchTerms(searchTerm:String){
-        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
-        UserDefaults.standard.synchronize()
+        var searchTermsArray = [String]()
+        searchTermsArray.append(contentsOf:defaults.object(forKey: "searchTermArray") as? [String] ?? [String]())
         searchTermsArray.append(searchTerm)
         defaults.setValue(searchTermsArray, forKey: "searchTermArray")
         }
