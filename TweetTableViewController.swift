@@ -10,6 +10,7 @@ import UIKit
 import Twitter
 
 class SearchTermsRepo {
+    
     static let sharedInstance = SearchTermsRepo()
     let defaults = UserDefaults.standard
     
@@ -18,6 +19,7 @@ class SearchTermsRepo {
         searchTermsArray.append(contentsOf:defaults.object(forKey: "searchTermArray") as? [String] ?? [String]())
         searchTermsArray.append(searchTerm)
         defaults.setValue(searchTermsArray, forKey: "searchTermArray")
+        print("Hello")
         }
     
     func getSearchTerms()->Array<String>{
