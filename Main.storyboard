@@ -204,12 +204,12 @@
                     </tableView>
                     <connections>
                         <segue destination="VxP-VR-nQa" kind="show" identifier="pictureSegue" id="MdF-7E-5wL"/>
-                        <segue destination="RIh-ad-SdA" kind="show" id="Qyn-eo-HWU"/>
+                        <segue destination="RIh-ad-SdA" kind="show" identifier="searchSegue" id="Qyn-eo-HWU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8tk-yM-zVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2766" y="-834"/>
+            <point key="canvasLocation" x="1540" y="1448"/>
         </scene>
         <!--Picture View Controller-->
         <scene sceneID="ySi-LE-Fkj">
@@ -224,7 +224,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ifO-DD-fgl">
-                                <rect key="frame" x="0.0" y="8" width="375" height="610"/>
+                                <rect key="frame" x="0.0" y="-36" width="375" height="703"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -287,6 +287,6 @@
         <image name="search.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EO4-Rd-2qC"/>
+        <segue reference="Qyn-eo-HWU"/>
     </inferredMetricsTieBreakers>
 </document>

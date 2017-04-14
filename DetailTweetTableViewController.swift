@@ -103,7 +103,7 @@ class DetailTweetTableViewController: UITableViewController {
         }
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             let mention  = mentions[indexPath.section][indexPath.row]
@@ -115,13 +115,13 @@ class DetailTweetTableViewController: UITableViewController {
             searchKeyword = (mention as! Twitter.Mention).keyword
             self.performSegue(withIdentifier: "searchSegue", sender: self)
         }
-
+        
         if indexPath.section == 2 {
             let mention  = mentions[indexPath.section][indexPath.row]
             if (mention as? Twitter.Mention) != nil{
-                    let URLString = (mention as! Twitter.Mention).keyword
-                    let url =  URL(string:URLString)
-                    UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                let URLString = (mention as! Twitter.Mention).keyword
+                let url =  URL(string:URLString)
+                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
                 
             }
         }
@@ -130,7 +130,7 @@ class DetailTweetTableViewController: UITableViewController {
             searchKeyword = (mention as! Twitter.Mention).keyword
             self.performSegue(withIdentifier: "searchSegue", sender: self)
         }
-
+        
     }
     private func getPicture (mention:Any) -> UIImage{
         var tweetPicture = UIImage()
@@ -138,25 +138,25 @@ class DetailTweetTableViewController: UITableViewController {
             let pictureURL = (mention as! Twitter.MediaItem).url
             let pictureData = NSData(contentsOf: pictureURL as URL)
             DispatchQueue.main.sync {
-             tweetPicture = UIImage(data: pictureData as! Data)!
+                tweetPicture = UIImage(data: pictureData as! Data)!
             }
-    }
+        }
         return tweetPicture
-}
+    }
     
     
-       override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if  segue.identifier == "pictureSegue" {
-    
-                let detailViewController = segue.destination as! PictureViewController
-                detailViewController.imageURL = pictureUrl
-            }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if  segue.identifier == "pictureSegue" {
+            
+            let detailViewController = segue.destination as! PictureViewController
+            detailViewController.imageURL = pictureUrl
+        }
         if  segue.identifier == "searchSegue" {
             
             let detailViewController = segue.destination as! TweetTableViewController
             detailViewController.searchText = searchKeyword
         }
-        }
+    }
     
 }
 
