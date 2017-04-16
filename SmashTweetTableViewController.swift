@@ -15,8 +15,8 @@ class SmashTweetTableViewController: TweetTableViewController
     var container: NSPersistentContainer? =
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
-    override func insertTweets(_ newTweets: [Twitter.Tweet]) {
-        super.insertTweets(newTweets)
+    override func insertTweets(_newTweets newTweets: [Twitter.Tweet]) {
+        super.insertTweets(_newTweets: newTweets)
         updateDatabase(with: newTweets)
     }
     
@@ -61,5 +61,14 @@ class SmashTweetTableViewController: TweetTableViewController
                 tweetersTVC.container = container
             }
         }
-    }
+        if segue.identifier == "detailTweetSegue" {
+            
+            let detailViewController = segue.destination as! DetailTweetTableViewController
+            
+            let myIndexPath = self.tableView.indexPathForSelectedRow!
+            let row = myIndexPath.row
+            
+            detailViewController.tweetSelected = [tweets[0][row]]
+            }
+        }
 }

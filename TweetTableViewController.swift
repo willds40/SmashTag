@@ -48,6 +48,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    func insertTweets(_newTweets: [Twitter.Tweet]){
+    tweets.insert(_newTweets, at:0)
+    }
+    
     private var twitterRequest:Twitter.Request?{
         if let query = searchText{
             return Twitter.Request(search: query + "-filter:retweets", count:100)
@@ -65,7 +69,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
                 DispatchQueue.main.async{
                     if request == weakSelf?.lastTwitterRequest{
                         if !newTweets.isEmpty{
-                            weakSelf?.tweets.insert(newTweets, at:0)
+                            self.insertTweets(_newTweets: newTweets)
                         }
                     }
                 }
