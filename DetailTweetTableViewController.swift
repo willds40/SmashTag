@@ -87,6 +87,9 @@ class DetailTweetTableViewController: UITableViewController {
         
         if ((mention as? Twitter.Mention) != nil){
             cell.textLabel?.text = (mention as! Twitter.Mention).keyword
+            if(mention as! Twitter.Mention).keyword.contains("#") || (mention as! Twitter.Mention).keyword.contains("@") {
+                cell.accessoryType = .detailDisclosureButton
+            }
         }else{
             
             DispatchQueue.global().async {
