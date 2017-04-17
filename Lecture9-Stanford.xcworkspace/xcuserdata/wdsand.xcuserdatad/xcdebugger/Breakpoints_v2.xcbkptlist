@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DetailTweetTableViewController.swift"
-            timestampString = "514141798.890041"
+            timestampString = "514146550.369012"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "DetailTweetTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -40,11 +40,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DetailTweetTableViewController.swift"
-            timestampString = "514141798.890041"
+            timestampString = "514146550.369012"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "DetailTweetTableViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -62,22 +62,6 @@
             startingLineNumber = "31"
             endingLineNumber = "31"
             landmarkName = "fetchImage()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DetailTweetTableViewController.swift"
-            timestampString = "514141798.890041"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "tableView(_:accessoryButtonTappedForRowWith:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -87,9 +87,6 @@ class DetailTweetTableViewController: UITableViewController {
         
         if ((mention as? Twitter.Mention) != nil){
             cell.textLabel?.text = (mention as! Twitter.Mention).keyword
-            if(mention as! Twitter.Mention).keyword.contains("#") || (mention as! Twitter.Mention).keyword.contains("@") {
-                cell.accessoryType = .detailDisclosureButton
-            }
         }else{
             
             DispatchQueue.global().async {
@@ -107,14 +104,7 @@ class DetailTweetTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "MentionsData", sender: self)
-    }
-    
-    
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+       override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section == 0 {
             let mention  = mentions[indexPath.section][indexPath.row]
@@ -126,7 +116,6 @@ class DetailTweetTableViewController: UITableViewController {
             searchKeyword = (mention as! Twitter.Mention).keyword
             self.performSegue(withIdentifier: "searchSegue", sender: self)
         }
-        
         if indexPath.section == 2 {
             let mention  = mentions[indexPath.section][indexPath.row]
             if (mention as? Twitter.Mention) != nil{
@@ -155,6 +144,17 @@ class DetailTweetTableViewController: UITableViewController {
         return tweetPicture
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {}
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if  segue.identifier == "pictureSegue" {
+            
+            let detailViewController = segue.destination as! PictureViewController
+            detailViewController.imageURL = pictureUrl
+        }
+        if  segue.identifier == "searchSegue" {
+            
+            let detailViewController = segue.destination as! TweetTableViewController
+            detailViewController.searchText = searchKeyword
+        }
+    }
     
 }

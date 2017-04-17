@@ -32,9 +32,15 @@ class SearchTableViewController: UITableViewController {
         let searchTerm  = searchTerms[indexPath.row]
         
         cell.textLabel?.text = searchTerm
+        cell.accessoryType = .detailDisclosureButton
         return cell
         
     }
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "MentionsData", sender: self)
+    }
+
+    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let searchTerm  = searchTerms[indexPath.row]
@@ -43,9 +49,12 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if  segue.identifier == "searchSegueRecentSearch" {
-            let detailViewController = segue.destination as! TweetTableViewController
-            detailViewController.searchText = searchKeyword
-        }
+//        if segue.identifier == "MentionsData"{
+//            let detailViewController = segue.destination as! SmashTweetersTableViewController
+//        }
+//        if  segue.identifier == "searchSegueRecentSearch" {
+//            let detailViewController = segue.destination as! TweetTableViewController
+//            detailViewController.searchText = searchKeyword
+//        }
     }    
 }

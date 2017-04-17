@@ -29,10 +29,10 @@
             </objects>
             <point key="canvasLocation" x="-414" y="-697"/>
         </scene>
-        <!--Search Table View Controller-->
+        <!--Smash Search Table View Controller-->
         <scene sceneID="lR6-8o-eOS">
             <objects>
-                <tableViewController id="BnD-l6-PQR" customClass="SearchTableViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="BnD-l6-PQR" customClass="SmashSearchTableViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="tGS-Ly-IDI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,6 +54,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="nns-03-Ung" kind="show" identifier="MentionsData" id="NiE-yl-ENV"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -68,7 +71,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S6e-iK-HB0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1932" y="-834"/>
+            <point key="canvasLocation" x="2015" y="-1106"/>
         </scene>
         <!--Smash Tweet Table View Controller-->
         <scene sceneID="mB9-dy-3ac">
@@ -173,10 +176,10 @@
             </objects>
             <point key="canvasLocation" x="1932" y="6.746626686656672"/>
         </scene>
-        <!--Smash Detail Tweet Table View Controller-->
+        <!--Detail Tweet Table View Controller-->
         <scene sceneID="aZw-03-SzJ">
             <objects>
-                <tableViewController id="zXw-K9-qGH" customClass="SmashDetailTweetTableViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="zXw-K9-qGH" customClass="DetailTweetTableViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="208" sectionHeaderHeight="28" sectionFooterHeight="28" id="CKe-wQ-Rgh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -203,9 +206,6 @@
                                         <constraint firstItem="sqK-f9-jj0" firstAttribute="leading" secondItem="iDC-ic-8J8" secondAttribute="leadingMargin" id="mqe-b3-pM6"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="nns-03-Ung" kind="show" identifier="MentionsData" id="zHm-HG-1Qj"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -264,7 +264,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6y3-6F-9oe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2729" y="1518"/>
+            <point key="canvasLocation" x="2838" y="-485"/>
         </scene>
         <!--Picture View Controller-->
         <scene sceneID="ySi-LE-Fkj">
@@ -279,7 +279,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ifO-DD-fgl">
-                                <rect key="frame" x="0.0" y="-36" width="375" height="659"/>
+                                <rect key="frame" x="0.0" y="8" width="375" height="615"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -342,7 +342,7 @@
         <image name="search.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zHm-HG-1Qj"/>
-        <segue reference="Qyn-eo-HWU"/>
+        <segue reference="NiE-yl-ENV"/>
+        <segue reference="EO4-Rd-2qC"/>
     </inferredMetricsTieBreakers>
 </document>
