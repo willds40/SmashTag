@@ -12,14 +12,18 @@ import Twitter
 
 class Mention: NSManagedObject
 {
-    class func findOrCreateTweet(matching twitterInfo: Twitter.Tweet, in context: NSManagedObjectContext) throws -> Tweet
-    {
-        let tweet = Tweet(context: context)
-        tweet.unique = twitterInfo.identifier
-        tweet.text = twitterInfo.text
-        tweet.created = twitterInfo.created as NSDate
-        tweet.tweeter = try? TwitterUser.findOrCreateTwitterUser(matching: twitterInfo.user, in: context)
-        return tweet
+    class func createMentionHashtag(mentionInfo: Twitter.Mention, and tweet:Twitter.Tweet, in context: NSManagedObjectContext){
+        let mention = Mention(context: context)
+        mention.hashtag = mentionInfo.keyword
+        mention.tweet = try? Tweet.findOrCreateTweet(matching: tweet, in: context)
+        
+    }
+    
+    class func createMentionUserMentions(mentionInfo: Twitter.Mention,and tweet:Twitter.Tweet, in context: NSManagedObjectContext){
+        let mention = Mention(context: context)
+        mention.userMention = mentionInfo.keyword
+        mention.tweet = try? Tweet.findOrCreateTweet(matching: tweet, in: context)
+
     }
 }
 

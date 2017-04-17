@@ -176,10 +176,10 @@
             </objects>
             <point key="canvasLocation" x="1932" y="6.746626686656672"/>
         </scene>
-        <!--Detail Tweet Table View Controller-->
+        <!--Smash Detail Tweet Table View Controller-->
         <scene sceneID="aZw-03-SzJ">
             <objects>
-                <tableViewController id="zXw-K9-qGH" customClass="DetailTweetTableViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="zXw-K9-qGH" customClass="SmashDetailTweetTableViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="208" sectionHeaderHeight="28" sectionFooterHeight="28" id="CKe-wQ-Rgh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -279,7 +279,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ifO-DD-fgl">
-                                <rect key="frame" x="0.0" y="8" width="375" height="615"/>
+                                <rect key="frame" x="0.0" y="-36" width="375" height="659"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -343,6 +343,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NiE-yl-ENV"/>
-        <segue reference="EO4-Rd-2qC"/>
+        <segue reference="Qyn-eo-HWU"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,6 +15,7 @@ class DetailTweetTableViewController: UITableViewController {
     var userMentions = Array<Twitter.Mention>()
     var images = Array<Twitter.MediaItem>()
     var mentions = [Array<Any>]()
+    var nonImageMentions = [Array<Twitter.Mention>]()
     var tweetSelected = Array<Twitter.Tweet>()
     var pictureUrl = NSURL()
     var searchKeyword = ""
@@ -41,16 +42,29 @@ class DetailTweetTableViewController: UITableViewController {
             userMentions.append(userMention)
             addMentions(mention: userMentions)
         }
+
+        DispatchQueue.global().async{
+            self.insertNewMentions(mentions: self.nonImageMentions, tweet:self.tweetSelected[0])
+        }
         
 }
     
+    func insertNewMentions(mentions:[Array<Twitter.Mention>], tweet:Twitter.Tweet){}
+    
     func addMentions (mention:Array<Twitter.Mention>){
     mentions.append(mention)
+    nonImageMentions.append(mention)
+    
     }
+    
     
     func addImage (image:Array<Twitter.MediaItem>){
     mentions.append(image)
     }
+    
+    
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
