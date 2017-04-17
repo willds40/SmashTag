@@ -173,10 +173,10 @@
             </objects>
             <point key="canvasLocation" x="1932" y="6.746626686656672"/>
         </scene>
-        <!--Detail Tweet Table View Controller-->
+        <!--Smash Detail Tweet Table View Controller-->
         <scene sceneID="aZw-03-SzJ">
             <objects>
-                <tableViewController id="zXw-K9-qGH" customClass="DetailTweetTableViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="zXw-K9-qGH" customClass="SmashDetailTweetTableViewController" customModule="SmashTag" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="208" sectionHeaderHeight="28" sectionFooterHeight="28" id="CKe-wQ-Rgh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -203,6 +203,9 @@
                                         <constraint firstItem="sqK-f9-jj0" firstAttribute="leading" secondItem="iDC-ic-8J8" secondAttribute="leadingMargin" id="mqe-b3-pM6"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="nns-03-Ung" kind="show" identifier="MentionsData" id="zHm-HG-1Qj"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -217,7 +220,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8tk-yM-zVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1540" y="1448"/>
+            <point key="canvasLocation" x="1540" y="1447.8260869565217"/>
         </scene>
         <!--Smash Tweeters Table View Controller-->
         <scene sceneID="dcZ-Og-mRh">
@@ -261,7 +264,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6y3-6F-9oe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3140" y="-684"/>
+            <point key="canvasLocation" x="2729" y="1518"/>
         </scene>
         <!--Picture View Controller-->
         <scene sceneID="ySi-LE-Fkj">
@@ -339,6 +342,7 @@
         <image name="search.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="zHm-HG-1Qj"/>
         <segue reference="Qyn-eo-HWU"/>
     </inferredMetricsTieBreakers>
 </document>

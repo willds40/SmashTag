@@ -107,7 +107,15 @@ class DetailTweetTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "MentionsData", sender: self)
+    }
+    
+    
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
         if indexPath.section == 0 {
             let mention  = mentions[indexPath.section][indexPath.row]
             pictureUrl = (mention as! Twitter.MediaItem).url as NSURL
@@ -147,19 +155,6 @@ class DetailTweetTableViewController: UITableViewController {
         return tweetPicture
     }
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if  segue.identifier == "pictureSegue" {
-            
-            let detailViewController = segue.destination as! PictureViewController
-            detailViewController.imageURL = pictureUrl
-        }
-        if  segue.identifier == "searchSegue" {
-            
-            let detailViewController = segue.destination as! TweetTableViewController
-            detailViewController.searchText = searchKeyword
-        }
-    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {}
     
 }
-
