@@ -21,26 +21,35 @@ class DetailTweetTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        for  var image in tweetSelected[0].media{
+            images.append(image)
+            addImage(image: images)
+        }
+
         
         for var hashtag in tweetSelected[0].hashtags{
             hashtags.append(hashtag)
+            addMentions(mention: hashtags)
         }
         
         for  var url in tweetSelected[0].urls{
             urls.append(url)
+            addMentions(mention: urls)
         }
         for  var userMention in tweetSelected[0].userMentions{
             userMentions.append(userMention)
+            addMentions(mention: userMentions)
         }
         
-        for  var image in tweetSelected[0].media{
-            images.append(image)
-        }
-        
-        mentions.append(images)
-        mentions.append(hashtags)
-        mentions.append(urls)
-        mentions.append(userMentions)
+}
+    
+    func addMentions (mention:Array<Twitter.Mention>){
+    mentions.append(mention)
+    }
+    
+    func addImage (image:Array<Twitter.MediaItem>){
+    mentions.append(image)
     }
     
     override func didReceiveMemoryWarning() {

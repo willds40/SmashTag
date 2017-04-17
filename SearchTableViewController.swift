@@ -49,12 +49,5 @@ class SearchTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "MentionsData"{
-//            let detailViewController = segue.destination as! SmashTweetersTableViewController
-//        }
-//        if  segue.identifier == "searchSegueRecentSearch" {
-//            let detailViewController = segue.destination as! TweetTableViewController
-//            detailViewController.searchText = searchKeyword
-//        }
     }    
 }
