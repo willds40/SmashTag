@@ -21,8 +21,9 @@ class SmashSearchTableViewController: SearchTableViewController {
 //    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "MentionsData"{
-            let detailViewController = segue.destination as! SmashTweetersTableViewController
+        if segue.identifier == "searchMentions"{
+            let detailViewController = segue.destination as! SmashMentionsTableViewController
+            detailViewController.searchTerm = searchKeyword
         }
         if  segue.identifier == "searchSegueRecentSearch" {
             let detailViewController = segue.destination as! TweetTableViewController

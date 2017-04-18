@@ -36,7 +36,7 @@ class DetailTweetTableViewController: UITableViewController {
         
         for  var url in tweetSelected[0].urls{
             urls.append(url)
-            addMentions(mention: urls)
+            
         }
         for  var userMention in tweetSelected[0].userMentions{
             userMentions.append(userMention)

@@ -19,21 +19,40 @@ class SmashDetailTweetTableViewController: DetailTweetTableViewController {
         updateDatabase(with: mentions, and:tweet)
         
     }
-    private func updateDatabase(with mentionsArray: [Array<Twitter.Mention>], and tweet:Twitter.Tweet ) {
+    private func updateDatabase(with mentionsArray: [[Twitter.Mention]], and tweet:Twitter.Tweet ) {
         print("starting database load")
         container?.performBackgroundTask { [weak self] context in
             for mentionsInfo in mentionsArray {
                 for mention in mentionsInfo{
-                    if mention.keyword.contains("@"){
-                        Mention.createMentionHashtag(mentionInfo: mention, and:tweet, in: context)
-                    }else{
-                        Mention.createMentionUserMentions(mentionInfo: mention, and:tweet, in: context)
-                    }
+                    Mention.createMention(mentionInfo: mention, and:tweet, in: context)
                 }
             }
             try? context.save()
             print("done loading database")
+             self?.printDatabaseStatistics()
         }
         
     }
+    
+    private func printDatabaseStatistics() {
+        if let context = container?.viewContext {
+            context.perform {
+                if Thread.isMainThread {
+                    print("on main thread")
+                } else {
+                    print("off main thread")
+                }
+                // bad way to count
+                if let tweetCount = (try? context.fetch(Tweet.fetchRequest()))?.count {
+                    print("\(tweetCount) tweets")
+                }
+                // good way to count
+                if let mentionsCount = try? context.count(for: Mention.fetchRequest()) {
+                    print("\(mentionsCount) Mentions")
+                }
+            }
+        }
+    }
+    
+
 }

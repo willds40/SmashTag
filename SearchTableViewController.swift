@@ -37,7 +37,9 @@ class SearchTableViewController: UITableViewController {
         
     }
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "MentionsData", sender: self)
+        let searchTerm  = searchTerms[indexPath.row]
+        searchKeyword = searchTerm
+        self.performSegue(withIdentifier: "searchMentions", sender: self)
     }
 
     
