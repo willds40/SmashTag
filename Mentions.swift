@@ -13,13 +13,12 @@ import Twitter
 class Mention: NSManagedObject
 {
     class func createMention(mentionInfo: Twitter.Mention, and tweet:Twitter.Tweet, in context: NSManagedObjectContext){
+        print("$$$$ CREATING MENTION FOR TWEET WITH ID: \(tweet.identifier)")
         let mention = Mention(context: context)
         mention.uniqueMention = mentionInfo.keyword
         mention.tweetId = tweet.identifier
-        mention.tweet = try? Tweet.findOrCreateTweet(matching: tweet, in: context)
-        
+        try? Tweet.addMentiontoTweet(matching: mention.tweetId!, in: context, mentionToSave: mention)
     }
-
 }
 
 

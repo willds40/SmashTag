@@ -12,20 +12,7 @@ import CoreData
 
 extension SmashMentionsTableViewController{
     // MARK: UITableViewDataSource
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController!.sections?.count ?? 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = fetchedResultsController?.sections, sections.count > 0 {
-            return sections[section].numberOfObjects
-        } else {
-            return 0
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = fetchedResultsController?.sections, sections.count > 0 {
             return sections[section].name
         } else {

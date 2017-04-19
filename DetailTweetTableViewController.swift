@@ -23,22 +23,21 @@ class DetailTweetTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        for  var image in tweetSelected[0].media{
+        for image in tweetSelected[0].media{
             images.append(image)
             addImage(image: images)
         }
 
-        
-        for var hashtag in tweetSelected[0].hashtags{
+        for hashtag in tweetSelected[0].hashtags{
             hashtags.append(hashtag)
             addMentions(mention: hashtags)
         }
         
-        for  var url in tweetSelected[0].urls{
+        for url in tweetSelected[0].urls{
             urls.append(url)
             
         }
-        for  var userMention in tweetSelected[0].userMentions{
+        for userMention in tweetSelected[0].userMentions{
             userMentions.append(userMention)
             addMentions(mention: userMentions)
         }
@@ -106,6 +105,7 @@ class DetailTweetTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.TweetCellIdentifier, for: indexPath)
+       
         let mention  = mentions[indexPath.section][indexPath.row]
         
         if ((mention as? Twitter.Mention) != nil){

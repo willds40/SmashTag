@@ -27,6 +27,7 @@ class SmashTweetersTableViewController: FetchedResultsTableViewController
                 selector: #selector(NSString.localizedCaseInsensitiveCompare(_:))
                 )]
             request.predicate = NSPredicate(format: "any tweets.text contains[c] %@", mention!)
+            
             fetchedResultsController = NSFetchedResultsController<TwitterUser>(
                 fetchRequest: request,
                 managedObjectContext: context,
