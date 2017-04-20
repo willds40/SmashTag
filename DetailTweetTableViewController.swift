@@ -25,27 +25,26 @@ class DetailTweetTableViewController: UITableViewController {
     
         for image in tweetSelected[0].media{
             images.append(image)
-            addImage(image: images)
         }
 
         for hashtag in tweetSelected[0].hashtags{
             hashtags.append(hashtag)
-            addMentions(mention: hashtags)
         }
         
         for url in tweetSelected[0].urls{
             urls.append(url)
-            
         }
         for userMention in tweetSelected[0].userMentions{
             userMentions.append(userMention)
-            addMentions(mention: userMentions)
         }
 
         DispatchQueue.global().async{
             self.insertNewMentions(mentions: self.nonImageMentions, tweet:self.tweetSelected[0])
         }
-        
+    addImage(image: images)
+    addMentions(mention: hashtags)
+    addMentions(mention: urls)
+    addMentions(mention: userMentions)
 }
     
     func insertNewMentions(mentions:[Array<Twitter.Mention>], tweet:Twitter.Tweet){}
@@ -56,14 +55,9 @@ class DetailTweetTableViewController: UITableViewController {
     
     }
     
-    
     func addImage (image:Array<Twitter.MediaItem>){
     mentions.append(image)
     }
-    
-    
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
