@@ -18,7 +18,7 @@ FetchedResultsTableViewController
     var fetchedResultsController: NSFetchedResultsController<Tweet>?
     var uniqueMentions = [String]()
     var context = NSManagedObjectContext()
-    
+    var mentionsDict = [String:Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,18 +43,22 @@ FetchedResultsTableViewController
                 cacheName: nil
             )
             try? fetchedResultsController?.performFetch()
-            
-            
-            
-            
              let arrayOfTweets = (fetchedResultsController?.fetchedObjects)!
             for tweet in arrayOfTweets{
                 for mention in tweet.mentions!{
                     uniqueMentions.append((mention as! Mention).uniqueMention!)
                 }
              uniqueMentions = Array(Set(uniqueMentions))
+                for uniqueMention in uniqueMentions{
+                let mentionCount = countMentions(uniqueMention)
+                mentionsDict[uniqueMention] = mentionCount
+                }
             }
-            
+                
+            uniqueMentions = Array(mentionsDict.keys)
+                uniqueMentions.sort { (o1, o2) -> Bool in
+                mentionsDict[o1]! > mentionsDict[o2]! 
+                }
             tableView.reloadData()
         }
     }
@@ -72,20 +76,19 @@ FetchedResultsTableViewController
         // #warning Incomplete implementation, return the number of row
         return uniqueMentions.count
     }
-    
-    
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.MentionPopularityCellIdentifier, for: indexPath)
         let menntionCell = uniqueMentions[indexPath.row]
         cell.textLabel?.text = menntionCell
-        let mentionCount = mentionCountByCount(menntionCell)
-       
+        let mentionCount = countMentions(menntionCell)
+        
         cell.detailTextLabel?.text = "\(mentionCount) mention\((mentionCount == 1) ? "" : "s")"
+
         return cell
     }
     
-    private func mentionCountByCount(_ mention: String) -> Int {
+    private func countMentions(_ mention: String) -> Int {
         let request: NSFetchRequest<Mention> = Mention.fetchRequest()
         request.predicate = NSPredicate(format: "uniqueMention contains[c] %@", mention)
         return (try? context.count(for: request)) ?? 0
