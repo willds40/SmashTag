@@ -37,5 +37,98 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SmashMentionsTableViewController.swift"
+            timestampString = "514390187.492423"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "SmashMentionsTableViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmashTag.SmashMentionsTableViewController.context.getter : __ObjC.NSManagedObjectContext"
+                  moduleName = "SmashTag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wdsand/Documents/Xcode/Stanford%20Swift%209/SmashTag/SmashTag/SmashMentionsTableViewController.swift"
+                  timestampString = "514390188.056768"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmashTag.SmashMentionsTableViewController.context.setter : __ObjC.NSManagedObjectContext"
+                  moduleName = "SmashTag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wdsand/Documents/Xcode/Stanford%20Swift%209/SmashTag/SmashTag/SmashMentionsTableViewController.swift"
+                  timestampString = "514390188.058425"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmashTag.SmashMentionsTableViewController.init (style : __C.UITableViewStyle) -&gt; SmashTag.SmashMentionsTableViewController"
+                  moduleName = "SmashTag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wdsand/Documents/Xcode/Stanford%20Swift%209/SmashTag/SmashTag/SmashMentionsTableViewController.swift"
+                  timestampString = "514390188.059727"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "479">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmashTag.SmashMentionsTableViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; SmashTag.SmashMentionsTableViewController"
+                  moduleName = "SmashTag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wdsand/Documents/Xcode/Stanford%20Swift%209/SmashTag/SmashTag/SmashMentionsTableViewController.swift"
+                  timestampString = "514390188.060921"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "614">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SmashTag.SmashMentionsTableViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;SmashTag.SmashMentionsTableViewController&gt;"
+                  moduleName = "SmashTag"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wdsand/Documents/Xcode/Stanford%20Swift%209/SmashTag/SmashTag/SmashMentionsTableViewController.swift"
+                  timestampString = "514390188.062173"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "20"
+                  endingLineNumber = "20"
+                  offsetFromSymbolStart = "479">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
