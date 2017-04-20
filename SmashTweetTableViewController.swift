@@ -27,10 +27,6 @@ class SmashTweetTableViewController: TweetTableViewController
             for twitterInfo in tweets {
                 _ = try? Tweet.findOrCreateTweet(matching: twitterInfo, in: context)
             }
-
-            
-            
-            
             try? context.save()
             print("done loading database")
             self?.printDatabaseStatistics()
@@ -57,8 +53,6 @@ class SmashTweetTableViewController: TweetTableViewController
         }
     }
     
-    // MARK: Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Tweeters Mentioning Search Term" {
             if let tweetersTVC = segue.destination as? SmashTweetersTableViewController {
@@ -75,5 +69,5 @@ class SmashTweetTableViewController: TweetTableViewController
             
             detailViewController.tweetSelected = [tweets[0][row]]
             }
-        }
+    }
 }

@@ -72,17 +72,14 @@ class SmashDetailTweetTableViewController: DetailTweetTableViewController
                 } else {
                     print("off main thread")
                 }
-                // bad way to count
                 if let tweetCount = (try? context.fetch(Tweet.fetchRequest()))?.count {
                     print("\(tweetCount) tweets")
                 }
-                // good way to count
+                
                 if let mentionsCount = try? context.count(for: Mention.fetchRequest()) {
                     print("\(mentionsCount) Mentions")
                 }
             }
         }
     }
-    
-
 }

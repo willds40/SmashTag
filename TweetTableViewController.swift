@@ -28,10 +28,7 @@ class SearchTermsRepo {
     }
 }
 
-
-
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
-    
     var tweets = [Array<Twitter.Tweet>](){
         didSet{
             tableView.reloadData()
@@ -64,7 +61,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     func searchForTweet(){
         if let request = twitterRequest{
             lastTwitterRequest = request
-            
             request.fetchTweets{[weak weakSelf = self] newTweets in
                 DispatchQueue.main.async{
                     if request == weakSelf?.lastTwitterRequest{
@@ -84,12 +80,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
       
         
     }
-    
-    
-    // MARK: - TableView view data source
-    
-    
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return tweets.count
