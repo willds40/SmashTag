@@ -26,14 +26,13 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         twitterAdapter.searchForTweet()
         twitterAdapter.searchText = viewModel.searchText
         if let request = twitterAdapter.twitterRequest{
-            twitterAdapter.lastTwitterRequest = request
-            request.fetchTweets{[weak weakSelf = self] newTweets in
+           // twitterAdapter.lastTwitterRequest = request
+            request.fetchTweets{ newTweets in
                 DispatchQueue.main.async{
-                    if request == weakSelf?.twitterAdapter.lastTwitterRequest{
                         if !newTweets.isEmpty{
                             self.insertTweets(_newTweets: newTweets)
                         }
-                    }
+                    
                 }
             }
         }
