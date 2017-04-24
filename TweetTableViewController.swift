@@ -11,9 +11,11 @@ import Twitter
 
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     let twitterAdapterVC = TwitterAdapter()
+    var viewModel = TweetViewModel()
     var tweets = [Array<Twitter.Tweet>](){
         didSet{
-            tableView.reloadData()
+        viewModel.tweets = tweets
+        tableView.reloadData()
         }
     }
     var searchText: String? {
@@ -22,18 +24,13 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
             twitterAdapterVC.searchText = searchText
             searchForTweet()
             title = searchText
-            
-        
       SearchTermsRepo.sharedInstance.setSearchTerms(searchTerm: searchText!)
-            
         }
     }
     
     func insertTweets(_newTweets: [Twitter.Tweet]){
     tweets.insert(_newTweets, at:0)
     }
-    
-
     
     func searchForTweet(){
         if let request = twitterAdapterVC.twitterRequest{
@@ -59,12 +56,12 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return tweets.count
+        return viewModel.tweets.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return tweets[section].count
+        return viewModel.tweets[section].count
     }
     
     private struct Storyboard{

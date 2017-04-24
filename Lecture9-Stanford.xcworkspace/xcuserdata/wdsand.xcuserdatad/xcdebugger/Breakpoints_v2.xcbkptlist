@@ -121,11 +121,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TweetTableViewController.swift"
-            timestampString = "514733934.25894"
+            timestampString = "514737641.886856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "searchForTweet()"
             landmarkType = "7">
          </BreakpointContent>
@@ -137,11 +137,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TweetTableViewController.swift"
-            timestampString = "514733934.25894"
+            timestampString = "514737641.886856"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "searchForTweet()"
             landmarkType = "7">
          </BreakpointContent>
@@ -153,13 +153,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterAdapter.swift"
-            timestampString = "514734288.075376"
+            timestampString = "514735841.236466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "6"
-            endingLineNumber = "6"
-            landmarkName = "TwitterAdapter"
-            landmarkType = "3">
+            startingLineNumber = "24"
+            endingLineNumber = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -168,14 +166,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TweetTableViewController.swift"
-            timestampString = "514734334.780905"
+            filePath = "TwitterAdapter.swift"
+            timestampString = "514735862.117214"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "searchForTweet()"
-            landmarkType = "7">
+            startingLineNumber = "14"
+            endingLineNumber = "14">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
