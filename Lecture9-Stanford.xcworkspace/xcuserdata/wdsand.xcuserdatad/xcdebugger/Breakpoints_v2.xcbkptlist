@@ -121,11 +121,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterAdapter.swift"
-            timestampString = "514748927.631905"
+            timestampString = "514751638.279858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51">
+            startingLineNumber = "67"
+            endingLineNumber = "67">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -135,27 +135,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterAdapter.swift"
-            timestampString = "514748927.631905"
+            timestampString = "514751638.279858"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TweetTableViewController.swift"
-            timestampString = "514750020.688528"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "TweetTableViewController"
-            landmarkType = "3">
+            startingLineNumber = "57"
+            endingLineNumber = "57">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -181,7 +165,7 @@
                   moduleName = "SmashTag"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wdsand/Documents/Xcode/Stanford%20Swift%209/SmashTag/SmashTag/TwitterAdapter.swift"
-                  timestampString = "514750104.924083"
+                  timestampString = "514752804.353594"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "5"
@@ -196,7 +180,7 @@
                   moduleName = "SmashTag"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wdsand/Documents/Xcode/Stanford%20Swift%209/SmashTag/SmashTag/TwitterAdapter.swift"
-                  timestampString = "514750104.925174"
+                  timestampString = "514752804.354992"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "5"
@@ -211,12 +195,12 @@
                   moduleName = "SmashTag"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/wdsand/Documents/Xcode/Stanford%20Swift%209/SmashTag/SmashTag/TwitterAdapter.swift"
-                  timestampString = "514750104.926255"
+                  timestampString = "514752804.356254"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "5"
                   endingLineNumber = "5"
-                  offsetFromSymbolStart = "64">
+                  offsetFromSymbolStart = "48">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -228,11 +212,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TweetViewModel.swift"
-            timestampString = "514750046.839662"
+            timestampString = "514753009.370557"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
             landmarkName = "TweetViewModel"
             landmarkType = "3">
          </BreakpointContent>

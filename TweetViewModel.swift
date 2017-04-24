@@ -10,13 +10,18 @@ import Foundation
 import Twitter
 class TweetViewModel{
     var tweets = [Array<Twitter.Tweet>]()
-    let twitterAdapterVC = TwitterAdapter()
+    let twitterAdapter = TwitterAdapter()
+    var twitterRequest:Twitter.Request?
     var searchText: String? {
         didSet{
-            twitterAdapterVC.searchText = searchText
+            twitterAdapter.searchText = searchText
             tweets.removeAll()
             SearchTermsRepo.sharedInstance.setSearchTerms(searchTerm: searchText!)
         }
+    }
+    func updateRequest(){
+    twitterAdapter.searchText = searchText
+    twitterRequest = twitterAdapter.twitterRequest
     }
 }
 

@@ -11,10 +11,13 @@ import Twitter
 
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     var viewModel = TweetViewModel()
-    let twitterAdapter = TwitterAdapter()
-    var searchText: String? {
+     //let twitterAdapter = TwitterAdapter()
+        var searchText: String? {
         didSet{
+          
             viewModel.searchText = searchText
+            viewModel.updateRequest()
+            //twitterAdapter.searchText = viewModel.searchText
             searchForTweet()
         }
     }
@@ -23,10 +26,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func searchForTweet(){
-        twitterAdapter.searchForTweet()
-        twitterAdapter.searchText = viewModel.searchText
-        if let request = twitterAdapter.twitterRequest{
-           // twitterAdapter.lastTwitterRequest = request
+     //   twitterAdapter.searchText = viewModel.searchText
+        if let request = viewModel.twitterRequest{
             makeRequest(request: request)
         }
     }
