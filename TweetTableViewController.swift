@@ -20,8 +20,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
 
     func insertTweets(_newTweets: [Twitter.Tweet]){
-        viewModel.tweets.insert(_newTweets, at:0)
-        tableView.reloadData()
     }
     
     func searchForTweet(){
