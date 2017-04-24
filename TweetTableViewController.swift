@@ -11,7 +11,7 @@ import Twitter
 
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     var viewModel = TweetViewModel()
-    let twitterAdapterVC = TwitterAdapter()
+    let twitterAdapter = TwitterAdapter()
     var searchText: String? {
         didSet{
             viewModel.searchText = searchText
@@ -23,12 +23,12 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func searchForTweet(){
-        twitterAdapterVC.searchText = viewModel.searchText
-        if let request = twitterAdapterVC.twitterRequest{
-            twitterAdapterVC.lastTwitterRequest = request
+        twitterAdapter.searchText = viewModel.searchText
+        if let request = twitterAdapter.twitterRequest{
+            twitterAdapter.lastTwitterRequest = request
             request.fetchTweets{[weak weakSelf = self] newTweets in
                 DispatchQueue.main.async{
-                    if request == weakSelf?.twitterAdapterVC.lastTwitterRequest{
+                    if request == weakSelf?.twitterAdapter.lastTwitterRequest{
                         if !newTweets.isEmpty{
                             self.insertTweets(_newTweets: newTweets)
                         }
