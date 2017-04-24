@@ -74,9 +74,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        viewModel.searchText = textField.text
-        title = viewModel.searchText
-        searchForTweet()
+        searchText = textField.text
+        title = searchText
         return true
     }
 }
@@ -89,8 +88,7 @@ class SearchTermsRepo {
         searchTermsArray.append(contentsOf:defaults.object(forKey: "searchTermArray") as? [String] ?? [String]())
         searchTermsArray.append(searchTerm)
         defaults.setValue(searchTermsArray, forKey: "searchTermArray")
-        print("Hello")
-    }
+            }
     
     func getSearchTerms()->Array<String>{
         let searchTerms = defaults.object(forKey: "searchTermArray") as? [String] ?? [String]()
