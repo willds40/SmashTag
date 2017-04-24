@@ -12,20 +12,19 @@ import Twitter
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     var viewModel = TweetViewModel()
     let twitterAdapterVC = TwitterAdapter()
-    
     var searchText: String? {
         didSet{
-            twitterAdapterVC.searchText = viewModel.searchText
-            searchForTweet()
-                }
+            viewModel.searchText = searchText
+        }
     }
     
     func insertTweets(_newTweets: [Twitter.Tweet]){
-    viewModel.tweets.insert(_newTweets, at:0)
-    tableView.reloadData()
+        viewModel.tweets.insert(_newTweets, at:0)
+        tableView.reloadData()
     }
     
     func searchForTweet(){
+        twitterAdapterVC.searchText = viewModel.searchText
         if let request = twitterAdapterVC.twitterRequest{
             twitterAdapterVC.lastTwitterRequest = request
             request.fetchTweets{[weak weakSelf = self] newTweets in
@@ -69,20 +68,19 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var searchTextField: UITextField!{
         didSet{searchTextField.delegate = self
-            searchTextField.text = searchText
+            searchTextField.text = viewModel.searchText
         }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         viewModel.searchText = textField.text
-        searchText = viewModel.searchText
         title = viewModel.searchText
+        searchForTweet()
         return true
     }
 }
-    class SearchTermsRepo {
-    
+class SearchTermsRepo {
     static let sharedInstance = SearchTermsRepo()
     let defaults = UserDefaults.standard
     
