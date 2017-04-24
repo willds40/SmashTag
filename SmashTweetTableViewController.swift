@@ -67,7 +67,7 @@ class SmashTweetTableViewController: TweetTableViewController
             let myIndexPath = self.tableView.indexPathForSelectedRow!
             let row = myIndexPath.row
             
-            detailViewController.tweetSelected = [tweets[0][row]]
+            detailViewController.tweetSelected = [viewModel.tweets[0][row]]
             }
     }
 }

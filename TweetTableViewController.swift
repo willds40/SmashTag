@@ -15,7 +15,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     var tweets = [Array<Twitter.Tweet>](){
         didSet{
         viewModel.tweets = tweets
-        tableView.reloadData()
+        //tableView.reloadData()
         }
     }
     var searchText: String? {
@@ -29,7 +29,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func insertTweets(_newTweets: [Twitter.Tweet]){
-    tweets.insert(_newTweets, at:0)
+    viewModel.tweets.insert(_newTweets, at:0)
+    tableView.reloadData()
     }
     
     func searchForTweet(){
@@ -71,7 +72,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.TweetCellIndentifier, for: indexPath)
         
-        let tweet = tweets[indexPath.section][indexPath.row]
+        let tweet = viewModel.tweets[indexPath.section][indexPath.row]
         if let tweetCell = cell as? TweetTableViewCell{
             tweetCell.tweet = tweet
         }
