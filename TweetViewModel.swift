@@ -9,5 +9,13 @@
 import Foundation
 import Twitter
 class TweetViewModel{
- var tweets = [Array<Twitter.Tweet>]()
+    var tweets = [Array<Twitter.Tweet>]()
+    var searchText: String? {
+        didSet{
+            tweets.removeAll()
+            SearchTermsRepo.sharedInstance.setSearchTerms(searchTerm: searchText!)
+        }
+    }
 }
+
+

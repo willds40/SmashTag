@@ -15,11 +15,11 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     var searchText: String? {
         didSet{
-            viewModel.tweets.removeAll()
+            //viewModel.tweets.removeAll()
             twitterAdapterVC.searchText = searchText
             searchForTweet()
             title = searchText
-      SearchTermsRepo.sharedInstance.setSearchTerms(searchTerm: searchText!)
+     // SearchTermsRepo.sharedInstance.setSearchTerms(searchTerm: searchText!)
         }
     }
     
