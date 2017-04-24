@@ -121,11 +121,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TweetTableViewController.swift"
-            timestampString = "514739404.890217"
+            timestampString = "514740232.701078"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "TweetTableViewController"
             landmarkType = "3">
          </BreakpointContent>

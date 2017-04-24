@@ -10,17 +10,14 @@ import UIKit
 import Twitter
 
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
-    let twitterAdapterVC = TwitterAdapter()
     var viewModel = TweetViewModel()
+    let twitterAdapterVC = TwitterAdapter()
     
     var searchText: String? {
         didSet{
-            //viewModel.tweets.removeAll()
-            twitterAdapterVC.searchText = searchText
+            twitterAdapterVC.searchText = viewModel.searchText
             searchForTweet()
-            title = searchText
-     // SearchTermsRepo.sharedInstance.setSearchTerms(searchTerm: searchText!)
-        }
+                }
     }
     
     func insertTweets(_newTweets: [Twitter.Tweet]){
@@ -78,7 +75,9 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        searchText = textField.text
+        viewModel.searchText = textField.text
+        searchText = viewModel.searchText
+        title = viewModel.searchText
         return true
     }
 }
