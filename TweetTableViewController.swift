@@ -10,24 +10,20 @@ import UIKit
 import Twitter
 
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
-    var viewModel = TweetViewModel()
-     //let twitterAdapter = TwitterAdapter()
-        var searchText: String? {
+    var tweetViewModel = TweetViewModel()
+    var searchText: String? {
         didSet{
-          
-            viewModel.searchText = searchText
-            viewModel.updateRequest()
-            //twitterAdapter.searchText = viewModel.searchText
+            tweetViewModel.searchText = searchText
+            tweetViewModel.updateRequest()
             searchForTweet()
         }
     }
-
+    
     func insertTweets(_newTweets: [Twitter.Tweet]){
     }
     
     func searchForTweet(){
-     //   twitterAdapter.searchText = viewModel.searchText
-        if let request = viewModel.twitterRequest{
+        if let request = tweetViewModel.twitterRequest{
             makeRequest(request: request)
         }
     }
@@ -39,7 +35,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
                 }
             }
         }
-
+        
     }
     
     
@@ -50,11 +46,11 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.tweets.count
+        return tweetViewModel.tweets.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.tweets[section].count
+        return tweetViewModel.tweets[section].count
     }
     
     private struct Storyboard{
@@ -63,7 +59,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.TweetCellIndentifier, for: indexPath)
-        let tweet = viewModel.tweets[indexPath.section][indexPath.row]
+        let tweet = tweetViewModel.tweets[indexPath.section][indexPath.row]
         if let tweetCell = cell as? TweetTableViewCell{
             tweetCell.tweet = tweet
         }
@@ -92,7 +88,7 @@ class SearchTermsRepo {
         searchTermsArray.append(contentsOf:defaults.object(forKey: "searchTermArray") as? [String] ?? [String]())
         searchTermsArray.append(searchTerm)
         defaults.setValue(searchTermsArray, forKey: "searchTermArray")
-            }
+    }
     
     func getSearchTerms()->Array<String>{
         let searchTerms = defaults.object(forKey: "searchTermArray") as? [String] ?? [String]()

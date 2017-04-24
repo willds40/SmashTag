@@ -16,7 +16,7 @@ class SmashTweetTableViewController: TweetTableViewController
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
      override func insertTweets(_newTweets newTweets: [Twitter.Tweet]) {
-        viewModel.tweets.insert(newTweets, at:0)
+        tweetViewModel.tweets.insert(newTweets, at:0)
         tableView.reloadData()
         updateDatabase(with: newTweets)
         
@@ -68,7 +68,7 @@ class SmashTweetTableViewController: TweetTableViewController
             let myIndexPath = self.tableView.indexPathForSelectedRow!
             let row = myIndexPath.row
             
-            detailViewController.tweetSelected = [viewModel.tweets[0][row]]
+            detailViewController.tweetSelected = [tweetViewModel.tweets[0][row]]
             }
     }
 }
