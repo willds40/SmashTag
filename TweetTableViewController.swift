@@ -15,12 +15,19 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     var searchText: String? {
         didSet{
             viewModel.searchText = searchText
+            searchForTweet()
         }
+    }
+    
+    func updateTable(){
+    tableView.reloadData()
     }
     
     func insertTweets(_newTweets: [Twitter.Tweet]){
         viewModel.tweets.insert(_newTweets, at:0)
+        viewModel.insertTweets()
         tableView.reloadData()
+        //viewModel.insertTweets()
     }
     
     func searchForTweet(){
