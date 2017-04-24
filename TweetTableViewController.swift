@@ -67,8 +67,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBOutlet weak var searchTextField: UITextField!{
-        didSet{searchTextField.delegate = self
-            searchTextField.text = viewModel.searchText
+        didSet{
+            searchTextField.delegate = self
         }
     }
     
