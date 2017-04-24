@@ -27,17 +27,21 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         twitterAdapter.searchText = viewModel.searchText
         if let request = twitterAdapter.twitterRequest{
            // twitterAdapter.lastTwitterRequest = request
-            request.fetchTweets{ newTweets in
-                DispatchQueue.main.async{
-                        if !newTweets.isEmpty{
-                            self.insertTweets(_newTweets: newTweets)
-                        }
-                    
+            makeRequest(request: request)
+        }
+    }
+    func makeRequest(request:Request){
+        request.fetchTweets{ newTweets in
+            DispatchQueue.main.async{
+                if !newTweets.isEmpty{
+                    self.insertTweets(_newTweets: newTweets)
                 }
             }
         }
-        
+
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
