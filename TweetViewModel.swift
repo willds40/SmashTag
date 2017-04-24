@@ -18,10 +18,6 @@ class TweetViewModel{
             SearchTermsRepo.sharedInstance.setSearchTerms(searchTerm: searchText!)
         }
     }
-    func insertTweets(){
-    let tweetTableViewController = TweetTableViewController()
-    tweetTableViewController.updateTable()
-    }
 }
 
 
