@@ -33,21 +33,14 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     tweets.insert(_newTweets, at:0)
     }
     
-//    private var twitterRequest:Twitter.Request?{
-//        if let query = searchText{
-//            return Twitter.Request(search: query + "-filter:retweets", count:100)
-//        }
-//        return nil
-//    }
-    
-    private var lastTwitterRequest:Twitter.Request?
+
     
     func searchForTweet(){
         if let request = twitterAdapterVC.twitterRequest{
-            lastTwitterRequest = request
+            twitterAdapterVC.lastTwitterRequest = request
             request.fetchTweets{[weak weakSelf = self] newTweets in
                 DispatchQueue.main.async{
-                    if request == weakSelf?.lastTwitterRequest{
+                    if request == weakSelf?.twitterAdapterVC.lastTwitterRequest{
                         if !newTweets.isEmpty{
                             self.insertTweets(_newTweets: newTweets)
                         }
