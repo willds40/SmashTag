@@ -12,15 +12,10 @@ import Twitter
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     let twitterAdapterVC = TwitterAdapter()
     var viewModel = TweetViewModel()
-    var tweets = [Array<Twitter.Tweet>](){
-        didSet{
-        viewModel.tweets = tweets
-        //tableView.reloadData()
-        }
-    }
+    
     var searchText: String? {
         didSet{
-            tweets.removeAll()
+            viewModel.tweets.removeAll()
             twitterAdapterVC.searchText = searchText
             searchForTweet()
             title = searchText
@@ -52,16 +47,13 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-      
-        
     }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return viewModel.tweets.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return viewModel.tweets[section].count
     }
     
@@ -71,12 +63,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.TweetCellIndentifier, for: indexPath)
-        
         let tweet = viewModel.tweets[indexPath.section][indexPath.row]
         if let tweetCell = cell as? TweetTableViewCell{
             tweetCell.tweet = tweet
         }
-        
         return cell
     }
     
@@ -91,20 +81,8 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         searchText = textField.text
         return true
     }
-    
-    
-   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {   if segue.identifier == "detailTweetSegue" {
-    
-        let detailViewController = segue.destination as! DetailTweetTableViewController
-    
-        let myIndexPath = self.tableView.indexPathForSelectedRow!
-        let row = myIndexPath.row
-    
-        detailViewController.tweetSelected = [tweets[0][row]]
-    }
-        }
 }
-class SearchTermsRepo {
+    class SearchTermsRepo {
     
     static let sharedInstance = SearchTermsRepo()
     let defaults = UserDefaults.standard
