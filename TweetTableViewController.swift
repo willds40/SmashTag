@@ -9,26 +9,8 @@
 import UIKit
 import Twitter
 
-class SearchTermsRepo {
-    
-    static let sharedInstance = SearchTermsRepo()
-    let defaults = UserDefaults.standard
-    
-    func setSearchTerms(searchTerm:String){
-        var searchTermsArray = [String]()
-        searchTermsArray.append(contentsOf:defaults.object(forKey: "searchTermArray") as? [String] ?? [String]())
-        searchTermsArray.append(searchTerm)
-        defaults.setValue(searchTermsArray, forKey: "searchTermArray")
-        print("Hello")
-        }
-    
-    func getSearchTerms()->Array<String>{
-    let searchTerms = defaults.object(forKey: "searchTermArray") as? [String] ?? [String]()
-    return searchTerms
-    }
-}
-
 class TweetTableViewController: UITableViewController, UITextFieldDelegate {
+    let twitterAdapterVC = TwitterAdapter()
     var tweets = [Array<Twitter.Tweet>](){
         didSet{
             tableView.reloadData()
@@ -37,8 +19,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     var searchText: String? {
         didSet{
             tweets.removeAll()
+            twitterAdapterVC.searchText = searchText
             searchForTweet()
             title = searchText
+            
         
       SearchTermsRepo.sharedInstance.setSearchTerms(searchTerm: searchText!)
             
@@ -49,17 +33,17 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     tweets.insert(_newTweets, at:0)
     }
     
-    private var twitterRequest:Twitter.Request?{
-        if let query = searchText{
-            return Twitter.Request(search: query + "-filter:retweets", count:100)
-        }
-        return nil
-    }
+//    private var twitterRequest:Twitter.Request?{
+//        if let query = searchText{
+//            return Twitter.Request(search: query + "-filter:retweets", count:100)
+//        }
+//        return nil
+//    }
     
     private var lastTwitterRequest:Twitter.Request?
     
     func searchForTweet(){
-        if let request = twitterRequest{
+        if let request = twitterAdapterVC.twitterRequest{
             lastTwitterRequest = request
             request.fetchTweets{[weak weakSelf = self] newTweets in
                 DispatchQueue.main.async{
@@ -129,3 +113,22 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
         }
 }
+class SearchTermsRepo {
+    
+    static let sharedInstance = SearchTermsRepo()
+    let defaults = UserDefaults.standard
+    
+    func setSearchTerms(searchTerm:String){
+        var searchTermsArray = [String]()
+        searchTermsArray.append(contentsOf:defaults.object(forKey: "searchTermArray") as? [String] ?? [String]())
+        searchTermsArray.append(searchTerm)
+        defaults.setValue(searchTermsArray, forKey: "searchTermArray")
+        print("Hello")
+    }
+    
+    func getSearchTerms()->Array<String>{
+        let searchTerms = defaults.object(forKey: "searchTermArray") as? [String] ?? [String]()
+        return searchTerms
+    }
+}
+
