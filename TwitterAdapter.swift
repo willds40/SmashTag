@@ -9,4 +9,7 @@ class TwitterAdapter {
         }
         return nil
     }
+    func searchForTweet(){
+    }
+    
 }

@@ -23,6 +23,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func searchForTweet(){
+        twitterAdapter.searchForTweet()
         twitterAdapter.searchText = viewModel.searchText
         if let request = twitterAdapter.twitterRequest{
             twitterAdapter.lastTwitterRequest = request
