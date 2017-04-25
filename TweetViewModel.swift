@@ -9,7 +9,11 @@
 import Foundation
 import Twitter
 class TweetViewModel{
-    var tweets = [Array<Twitter.Tweet>]()
+    var tweets = [Array<Twitter.Tweet>](){
+        didSet{
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
+        }
+    }
     let twitterAdapter = TwitterAdapter()
     var twitterRequest:Twitter.Request?
     var searchText: String? {
@@ -33,8 +37,6 @@ class TweetViewModel{
             DispatchQueue.main.async{
                 if !newTweets.isEmpty{
                     self.tweets.insert(newTweets, at: 0)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
-                }
             }
         }
         
@@ -42,4 +44,4 @@ class TweetViewModel{
 
 }
 
-
+}
