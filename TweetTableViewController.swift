@@ -15,34 +15,39 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         didSet{
             tweetViewModel.searchText = searchText
             tweetViewModel.updateRequest()
-            searchForTweet()
+            tweetViewModel.searchForTweet()
         }
     }
     
-    func insertTweets(_newTweets: [Twitter.Tweet]){
+    //    func insertTweets(){
+    //       tableView.reloadData()
+    //    }
+    //
+    //    func searchForTweet(){
+    //        if let request = tweetViewModel.twitterRequest{
+    //            makeRequest(request: request)
+    //        }
+    //    }
+    //    func makeRequest(request:Request){
+    //        request.fetchTweets{ newTweets in
+    //            DispatchQueue.main.async{
+    //                if !newTweets.isEmpty{
+    //                    self.tweetViewModel.tweets.insert(newTweets, at: 0)
+    //                    self.insertTweets()
+    //                }
+    //            }
+    //        }
+    //
+    //    }
+    func reloadTableView(){
+        tableView.reloadData()
     }
-    
-    func searchForTweet(){
-        if let request = tweetViewModel.twitterRequest{
-            makeRequest(request: request)
-        }
-    }
-    func makeRequest(request:Request){
-        request.fetchTweets{ newTweets in
-            DispatchQueue.main.async{
-                if !newTweets.isEmpty{
-                    self.insertTweets(_newTweets: newTweets)
-                }
-            }
-        }
-        
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -79,6 +84,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         return true
     }
 }
+
+
+
+
 class SearchTermsRepo {
     static let sharedInstance = SearchTermsRepo()
     let defaults = UserDefaults.standard

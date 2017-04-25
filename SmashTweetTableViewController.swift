@@ -15,12 +15,12 @@ class SmashTweetTableViewController: TweetTableViewController
     var container: NSPersistentContainer? =
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
-     override func insertTweets(_newTweets newTweets: [Twitter.Tweet]) {
-        tweetViewModel.tweets.insert(newTweets, at:0)
-        tableView.reloadData()
-        updateDatabase(with: newTweets)
-        
-    }
+//     override func insertTweets() {
+//        //tweetViewModel.tweets.insert(newTweets, at:0)
+//        tableView.reloadData()
+//        //updateDatabase(with: newTweets)
+//        
+//    }
     
     private func updateDatabase(with tweets: [Twitter.Tweet]) {
         print("starting database load")

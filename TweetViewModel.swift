@@ -23,6 +23,23 @@ class TweetViewModel{
     twitterAdapter.searchText = searchText
     twitterRequest = twitterAdapter.twitterRequest
     }
+    func searchForTweet(){
+    if let request = twitterRequest{
+    makeRequest(request: request)
+    }
+    }
+    func makeRequest(request:Request){
+        request.fetchTweets{ newTweets in
+            DispatchQueue.main.async{
+                if !newTweets.isEmpty{
+                    self.tweets.insert(newTweets, at: 0)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
+                }
+            }
+        }
+        
+    }
+
 }
 
 
