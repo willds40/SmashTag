@@ -21,6 +21,9 @@ class TweetViewModel{
             twitterAdapter.searchText = searchText
             tweets.removeAll()
             SearchTermsRepo.sharedInstance.setSearchTerms(searchTerm: searchText!)
+            updateRequest()
+            searchForTweet()
+
         }
     }
     func updateRequest(){

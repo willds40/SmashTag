@@ -14,31 +14,9 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     var searchText: String? {
         didSet{
             tweetViewModel.searchText = searchText
-            tweetViewModel.updateRequest()
-            tweetViewModel.searchForTweet()
         }
     }
     
-    //    func insertTweets(){
-    //       tableView.reloadData()
-    //    }
-    //
-    //    func searchForTweet(){
-    //        if let request = tweetViewModel.twitterRequest{
-    //            makeRequest(request: request)
-    //        }
-    //    }
-    //    func makeRequest(request:Request){
-    //        request.fetchTweets{ newTweets in
-    //            DispatchQueue.main.async{
-    //                if !newTweets.isEmpty{
-    //                    self.tweetViewModel.tweets.insert(newTweets, at: 0)
-    //                    self.insertTweets()
-    //                }
-    //            }
-    //        }
-    //
-    //    }
     func reloadTableView(){
         tableView.reloadData()
     }
