@@ -1,15 +1,15 @@
 import Twitter
 import Foundation
 class TwitterAdapter {
-    //var lastTwitterRequest:Twitter.Request?
-    var searchText:String?
-    var twitterRequest:Twitter.Request?{
-        if let query = searchText{
-            return Twitter.Request(search: query + "-filter:retweets", count:100)
-        }
-        return nil
-    }
-    func searchForTweet(){
+    var tweets: [Twitter.Tweet] = []
+    
+    func fetchTweets(matching searchText: String, handler: @escaping ([Twitter.Tweet]) -> Void) {
+        buildRequest(for: searchText).fetchTweets(handler)
     }
     
-}
+    private func buildRequest(for searchText: String) -> Twitter.Request {
+        return Twitter.Request(search: searchText + "-filter:retweets", count:100)
+    }
+    
+  }
+ 

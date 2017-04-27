@@ -17,10 +17,10 @@ class SmashDetailTweetTableViewController: DetailTweetTableViewController
     
     var fetchedResultsController: NSFetchedResultsController<Tweet>?
     
-    override func insertNewMentions(mentions:[Array<Twitter.Mention>], tweet:Twitter.Tweet){
-        updateDatabase(with: mentions, and:tweet)
-        
-    }
+//    override func insertNewMentions(mentions:[Array<Twitter.Mention>], tweet:Twitter.Tweet){
+//        updateDatabase(with: mentions, and:tweet)
+//        
+//    }
     private func updateDatabase(with mentionsArray: [[Twitter.Mention]], and tweet:Twitter.Tweet ) {
         print("starting database load")
 

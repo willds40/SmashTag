@@ -54,21 +54,21 @@ class SmashTweetTableViewController: TweetTableViewController
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Tweeters Mentioning Search Term" {
-            if let tweetersTVC = segue.destination as? SmashTweetersTableViewController {
-                tweetersTVC.mention = searchText
-                tweetersTVC.container = container
-            }
-        }
-        if segue.identifier == "detailTweetSegue" {
-            
-            let detailViewController = segue.destination as! DetailTweetTableViewController
-            
-            let myIndexPath = self.tableView.indexPathForSelectedRow!
-            let row = myIndexPath.row
-            
-            detailViewController.tweetSelected = [tweetViewModel.tweets[0][row]]
-            }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "Tweeters Mentioning Search Term" {
+//            if let tweetersTVC = segue.destination as? SmashTweetersTableViewController {
+//                tweetersTVC.mention = searchText
+//                tweetersTVC.container = container
+//            }
+//        }
+//        if segue.identifier == "detailTweetSegue" {
+//            
+//            let detailViewController = segue.destination as! DetailTweetTableViewController
+//            
+//            let myIndexPath = self.tableView.indexPathForSelectedRow!
+//            let row = myIndexPath.row
+//            
+//            detailViewController.tweetSelected = tweetViewModel.tweets
+//            }
+//    }
 }

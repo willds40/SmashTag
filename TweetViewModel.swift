@@ -8,43 +8,29 @@
 
 import Foundation
 import Twitter
-class TweetViewModel{
-    var tweets = [Array<Twitter.Tweet>](){
+class TweetViewModel {
+    var tweets: [Twitter.Tweet] = [] {
         didSet{
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
+            DispatchQueue.main.async{
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
+            }
         }
     }
     let twitterAdapter = TwitterAdapter()
-    var twitterRequest:Twitter.Request?
     var searchText: String? {
         didSet{
-            twitterAdapter.searchText = searchText
+            
             tweets.removeAll()
             SearchTermsRepo.sharedInstance.setSearchTerms(searchTerm: searchText!)
-            updateRequest()
-            searchForTweet()
-
+            //updateRequest()
+            searchForTweet(matching: searchText!)
         }
     }
-    func updateRequest(){
-    twitterAdapter.searchText = searchText
-    twitterRequest = twitterAdapter.twitterRequest
+    
+    func searchForTweet(matching searchText:String) {
+        twitterAdapter.fetchTweets(matching: searchText, handler: { [weak self] (foundTweets: [Twitter.Tweet]) in
+            // I pass along what my scope is!
+            self?.tweets = foundTweets
+        })
     }
-    func searchForTweet(){
-    if let request = twitterRequest{
-    makeRequest(request: request)
-    }
-    }
-    func makeRequest(request:Request){
-        request.fetchTweets{ newTweets in
-            DispatchQueue.main.async{
-                if !newTweets.isEmpty{
-                    self.tweets.insert(newTweets, at: 0)
-            }
-        }
-        
-    }
-
-}
-
 }

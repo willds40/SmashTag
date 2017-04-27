@@ -29,11 +29,11 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return tweetViewModel.tweets.count
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tweetViewModel.tweets[section].count
+        return tweetViewModel.tweets.count
     }
     
     private struct Storyboard{
@@ -42,7 +42,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.TweetCellIndentifier, for: indexPath)
-        let tweet = tweetViewModel.tweets[indexPath.section][indexPath.row]
+        let tweet = tweetViewModel.tweets[indexPath.row]
         if let tweetCell = cell as? TweetTableViewCell{
             tweetCell.tweet = tweet
         }
@@ -61,6 +61,24 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         title = searchText
         return true
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Tweeters Mentioning Search Term" {
+            if let tweetersTVC = segue.destination as? SmashTweetersTableViewController {
+                tweetersTVC.mention = searchText
+            }
+        }
+        if segue.identifier == "detailTweetSegue" {
+            
+            let detailViewController = segue.destination as! DetailTweetTableViewController
+            
+            let myIndexPath = self.tableView.indexPathForSelectedRow!
+            let row = myIndexPath.row
+            
+            detailViewController.tweetSelected = tweetViewModel.tweets[row]
+        }
+    }
+
 }
 
 

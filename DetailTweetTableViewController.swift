@@ -16,49 +16,66 @@ class DetailTweetTableViewController: UITableViewController {
     var images = Array<Twitter.MediaItem>()
     var mentions = [Array<Any>]()
     var nonImageMentions = [Array<Twitter.Mention>]()
-    var tweetSelected = Array<Twitter.Tweet>()
+    var tweetSelected :Twitter.Tweet!
     var pictureUrl = NSURL()
     var searchKeyword = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        for image in tweetSelected[0].media{
-            images.append(image)
-        }
-
-        for hashtag in tweetSelected[0].hashtags{
-            hashtags.append(hashtag)
-        }
+        addMentions()
         
-        for url in tweetSelected[0].urls{
-            urls.append(url)
-        }
-        for userMention in tweetSelected[0].userMentions{
-            userMentions.append(userMention)
-        }
-
-        DispatchQueue.global().async{
-            self.insertNewMentions(mentions: self.nonImageMentions, tweet:self.tweetSelected[0])
-        }
-    addImage(image: images)
-    addMentions(mention: hashtags)
-    addMentions(mention: urls)
-    addMentions(mention: userMentions)
+        
+        
+        
+    
+//        for image in tweetSelected.media{
+//            images.append(image)
+//        }
+//
+//        for hashtag in tweetSelected[0].hashtags{
+//            hashtags.append(hashtag)
+//        }
+//        
+//        for url in tweetSelected[0].urls{
+//            urls.append(url)
+//        }
+//        for userMention in tweetSelected[0].userMentions{
+//            userMentions.append(userMention)
+//        }
+//
+//        DispatchQueue.global().async{
+//            self.insertNewMentions(mentions: self.nonImageMentions, tweet:self.tweetSelected[0])
+//        }
+        
+//    addImage(image: images)
+//    addMentions(mention: hashtags)
+//    addMentions(mention: urls)
+//    addMentions(mention: userMentions)
 }
     
-    func insertNewMentions(mentions:[Array<Twitter.Mention>], tweet:Twitter.Tweet){}
-    
-    func addMentions (mention:Array<Twitter.Mention>){
-    mentions.append(mention)
-    nonImageMentions.append(mention)
+    func addMentions(){
+    mentions.append(tweetSelected.media)
+    mentions.append(tweetSelected.hashtags)
+    mentions.append(urls)
+    mentions.append(userMentions)
+    createSectionHeaders()
+    }
+    func createSectionHeaders(){
     
     }
-    
-    func addImage (image:Array<Twitter.MediaItem>){
-    mentions.append(image)
-    }
-    
+//
+//    func insertNewMentions(mentions:[Array<Twitter.Mention>], tweet:Twitter.Tweet){}
+//    
+//    func addMentions (mention:Array<Twitter.Mention>){
+//    mentions.append(mention)
+//    nonImageMentions.append(mention)
+//    
+//    }
+//    
+//    func addImage (image:Array<Twitter.MediaItem>){
+//    mentions.append(image)
+//    }
+//    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -68,7 +85,7 @@ class DetailTweetTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return mentions.count
+        return 4
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
