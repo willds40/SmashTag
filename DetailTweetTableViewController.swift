@@ -8,12 +8,16 @@ class DetailTweetTableViewController: UITableViewController {
     var searchKeyword = ""
     var detailTweetViewModel:DetailTweetViewModel!
     var pictureImage = UIImageView()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         detailTweetViewModel = DetailTweetViewModel()
         detailTweetViewModel.addMentions(tweetSelected)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: NSNotification.Name(rawValue: "reloadTable"), object: nil)
+    }
+    
+    func reloadTableView(){
+        tableView.reloadData()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -47,23 +51,18 @@ class DetailTweetTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.TweetCellIdentifier, for: indexPath)
-        
         let mention  = detailTweetViewModel.mentions[indexPath.section][indexPath.row]
-        
-        if ((mention as? Twitter.Mention) != nil){
+        if ((mention as? Twitter.Mention) != nil)
+        {
             cell.textLabel?.text = (mention as! Twitter.Mention).keyword
-        }else{
-            DispatchQueue.global().async {
-                let pictureURL = (mention as! Twitter.MediaItem).url
-                let pictureData = NSData(contentsOf: pictureURL as URL)
-                let tweetPicture = UIImage(data: pictureData as! Data)!
-
-                DispatchQueue.main.sync {
-                    self.pictureImage = cell.viewWithTag(1) as! UIImageView
-                    self.pictureImage.image = tweetPicture
-                    self.pictureImage.sizeToFit()
-                }
-            }
+        }
+        else
+        {
+            let pictureURL = (mention as! Twitter.MediaItem).url
+            detailTweetViewModel.getPicture(url: pictureURL)
+                self.pictureImage = cell.viewWithTag(1) as! UIImageView
+                self.pictureImage.image =  detailTweetViewModel.tweetPicture
+                self.pictureImage.sizeToFit()
         }
         return cell
     }
@@ -95,7 +94,7 @@ class DetailTweetTableViewController: UITableViewController {
             self.performSegue(withIdentifier: "searchSegue", sender: self)
         }
         
-    }    
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if  segue.identifier == "pictureSegue" {
             
