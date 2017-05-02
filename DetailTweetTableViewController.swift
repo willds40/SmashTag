@@ -1,194 +1,130 @@
-//
-//  DetailTweetTableViewController.swift
-//  SmashTag
-//
-//  Created by Will Devon-Sand on 4/9/17.
-//  Copyright © 2017 Will Devon-Sand. All rights reserved.
-//
 
 import UIKit
 import Twitter
 
 class DetailTweetTableViewController: UITableViewController {
-    var hashtags = Array<Twitter.Mention>()
-    var urls = Array<Twitter.Mention>()
-    var userMentions = Array<Twitter.Mention>()
-    var images = Array<Twitter.MediaItem>()
-    var mentions = [Array<Any>]()
-    var nonImageMentions = [Array<Twitter.Mention>]()
     var tweetSelected :Twitter.Tweet!
     var pictureUrl = NSURL()
     var searchKeyword = ""
+    var detailTweetViewModel:DetailTweetViewModel!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        addMentions()
-        
-        
-        
-        
-    
-//        for image in tweetSelected.media{
-//            images.append(image)
-//        }
-//
-//        for hashtag in tweetSelected[0].hashtags{
-//            hashtags.append(hashtag)
-//        }
-//        
-//        for url in tweetSelected[0].urls{
-//            urls.append(url)
-//        }
-//        for userMention in tweetSelected[0].userMentions{
-//            userMentions.append(userMention)
-//        }
-//
-//        DispatchQueue.global().async{
-//            self.insertNewMentions(mentions: self.nonImageMentions, tweet:self.tweetSelected[0])
-//        }
-        
-//    addImage(image: images)
-//    addMentions(mention: hashtags)
-//    addMentions(mention: urls)
-//    addMentions(mention: userMentions)
+    super.viewDidLoad()
+    detailTweetViewModel = DetailTweetViewModel()
+    detailTweetViewModel.addMentions(tweetSelected)
 }
+override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+}
+
+// MARK: - Table view data source
+
+override func numberOfSections(in tableView: UITableView) -> Int {
+    // #warning Incomplete implementation, return the number of sections
+    return detailTweetViewModel.mentions.count
+}
+
+override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return detailTweetViewModel.mentions[section].count
+}
+
+override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     
-    func addMentions(){
-    mentions.append(tweetSelected.media)
-    mentions.append(tweetSelected.hashtags)
-    mentions.append(urls)
-    mentions.append(userMentions)
-    createSectionHeaders()
+    if section == 0 && detailTweetViewModel.mentions[section].count != 0 {
+        return "Images"
     }
-    func createSectionHeaders(){
-    
+    if section == 1 && detailTweetViewModel.mentions[section].count != 0 {
+        return "Hashtags"
     }
-//
-//    func insertNewMentions(mentions:[Array<Twitter.Mention>], tweet:Twitter.Tweet){}
-//    
-//    func addMentions (mention:Array<Twitter.Mention>){
-//    mentions.append(mention)
-//    nonImageMentions.append(mention)
-//    
-//    }
-//    
-//    func addImage (image:Array<Twitter.MediaItem>){
-//    mentions.append(image)
-//    }
-//    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    if section == 2 && detailTweetViewModel.mentions[section].count != 0 {
+        return "URLS"
     }
-    
-    // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 4
+    if section == 3 && detailTweetViewModel.mentions[section].count != 0 {
+        return "User Mentions"
     }
+    return ""
+}
+
+private struct Storyboard{
+    static let TweetCellIdentifier = "DetailTweet"
+}
+
+override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.TweetCellIdentifier, for: indexPath)
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of row
-        return mentions[section].count
-    }
+    let mention  = detailTweetViewModel.mentions[indexPath.section][indexPath.row]
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    if ((mention as? Twitter.Mention) != nil){
+        cell.textLabel?.text = (mention as! Twitter.Mention).keyword
+    }else{
         
-        if section == 0 && mentions[section].count != 0 {
-            return "Images"
-        }
-        if section == 1 && mentions[section].count != 0 {
-            return "Hashtags"
-        }
-        if section == 2 && mentions[section].count != 0 {
-            return "URLS"
-        }
-        if section == 3 && mentions[section].count != 0 {
-            return "User Mentions"
-        }
-        return ""
-    }
-    
-    private struct Storyboard{
-        static let TweetCellIdentifier = "DetailTweet"
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.TweetCellIdentifier, for: indexPath)
-       
-        let mention  = mentions[indexPath.section][indexPath.row]
-        
-        if ((mention as? Twitter.Mention) != nil){
-            cell.textLabel?.text = (mention as! Twitter.Mention).keyword
-        }else{
-            
-            DispatchQueue.global().async {
-                let pictureURL = (mention as! Twitter.MediaItem).url
-                let pictureData = NSData(contentsOf: pictureURL as URL)
-                DispatchQueue.main.sync {
-                    let tweetPicture = UIImage(data: pictureData as! Data)!
-                    var imageV = UIImageView()
-                    imageV = cell.viewWithTag(1) as! UIImageView
-                    imageV.image = tweetPicture
-                    imageV.sizeToFit()
-                }
-            }
-        }
-        return cell
-    }
-    
-       override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        if indexPath.section == 0 {
-            let mention  = mentions[indexPath.section][indexPath.row]
-            pictureUrl = (mention as! Twitter.MediaItem).url as NSURL
-            self.performSegue(withIdentifier: "pictureSegue", sender: self)
-        }
-        if indexPath.section == 1 {
-            let mention  = mentions[indexPath.section][indexPath.row]
-            searchKeyword = (mention as! Twitter.Mention).keyword
-            self.performSegue(withIdentifier: "searchSegue", sender: self)
-        }
-        if indexPath.section == 2 {
-            let mention  = mentions[indexPath.section][indexPath.row]
-            if (mention as? Twitter.Mention) != nil{
-                let URLString = (mention as! Twitter.Mention).keyword
-                let url =  URL(string:URLString)
-                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-                
-            }
-        }
-        if indexPath.section == 3 {
-            let mention  = mentions[indexPath.section][indexPath.row]
-            searchKeyword = (mention as! Twitter.Mention).keyword
-            self.performSegue(withIdentifier: "searchSegue", sender: self)
-        }
-        
-    }
-    private func getPicture (mention:Any) -> UIImage{
-        var tweetPicture = UIImage()
         DispatchQueue.global().async {
             let pictureURL = (mention as! Twitter.MediaItem).url
             let pictureData = NSData(contentsOf: pictureURL as URL)
             DispatchQueue.main.sync {
-                tweetPicture = UIImage(data: pictureData as! Data)!
+                let tweetPicture = UIImage(data: pictureData as! Data)!
+                var imageV = UIImageView()
+                imageV = cell.viewWithTag(1) as! UIImageView
+                imageV.image = tweetPicture
+                imageV.sizeToFit()
             }
         }
-        return tweetPicture
+    }
+    return cell
+}
+
+override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    if indexPath.section == 0 {
+        let mention  = detailTweetViewModel.mentions[indexPath.section][indexPath.row]
+        pictureUrl = (mention as! Twitter.MediaItem).url as NSURL
+        self.performSegue(withIdentifier: "pictureSegue", sender: self)
+    }
+    if indexPath.section == 1 {
+        let mention  = detailTweetViewModel.mentions[indexPath.section][indexPath.row]
+        searchKeyword = (mention as! Twitter.Mention).keyword
+        self.performSegue(withIdentifier: "searchSegue", sender: self)
+    }
+    if indexPath.section == 2 {
+        let mention  = detailTweetViewModel.mentions[indexPath.section][indexPath.row]
+        if (mention as? Twitter.Mention) != nil{
+            let URLString = (mention as! Twitter.Mention).keyword
+            let url =  URL(string:URLString)
+            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+            
+        }
+    }
+    if indexPath.section == 3 {
+        let mention  = detailTweetViewModel.mentions[indexPath.section][indexPath.row]
+        searchKeyword = (mention as! Twitter.Mention).keyword
+        self.performSegue(withIdentifier: "searchSegue", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if  segue.identifier == "pictureSegue" {
-            
-            let detailViewController = segue.destination as! PictureViewController
-            detailViewController.imageURL = pictureUrl
-        }
-        if  segue.identifier == "searchSegue" {
-            
-            let detailViewController = segue.destination as! TweetTableViewController
-            detailViewController.searchText = searchKeyword
+}
+private func getPicture (mention:Any) -> UIImage{
+    var tweetPicture = UIImage()
+    DispatchQueue.global().async {
+        let pictureURL = (mention as! Twitter.MediaItem).url
+        let pictureData = NSData(contentsOf: pictureURL as URL)
+        DispatchQueue.main.sync {
+            tweetPicture = UIImage(data: pictureData as! Data)!
         }
     }
-    
+    return tweetPicture
+}
+
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if  segue.identifier == "pictureSegue" {
+        
+        let detailViewController = segue.destination as! PictureViewController
+        detailViewController.imageURL = pictureUrl
+    }
+    if  segue.identifier == "searchSegue" {
+        
+        let detailViewController = segue.destination as! TweetTableViewController
+        detailViewController.searchText = searchKeyword
+    }
+}
+
 }
