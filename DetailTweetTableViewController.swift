@@ -7,6 +7,8 @@ class DetailTweetTableViewController: UITableViewController {
     var pictureUrl = NSURL()
     var searchKeyword = ""
     var detailTweetViewModel:DetailTweetViewModel!
+    var pictureImage = UIImageView()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,16 +53,15 @@ class DetailTweetTableViewController: UITableViewController {
         if ((mention as? Twitter.Mention) != nil){
             cell.textLabel?.text = (mention as! Twitter.Mention).keyword
         }else{
-            
             DispatchQueue.global().async {
                 let pictureURL = (mention as! Twitter.MediaItem).url
                 let pictureData = NSData(contentsOf: pictureURL as URL)
+                let tweetPicture = UIImage(data: pictureData as! Data)!
+
                 DispatchQueue.main.sync {
-                    let tweetPicture = UIImage(data: pictureData as! Data)!
-                    var imageV = UIImageView()
-                    imageV = cell.viewWithTag(1) as! UIImageView
-                    imageV.image = tweetPicture
-                    imageV.sizeToFit()
+                    self.pictureImage = cell.viewWithTag(1) as! UIImageView
+                    self.pictureImage.image = tweetPicture
+                    self.pictureImage.sizeToFit()
                 }
             }
         }
